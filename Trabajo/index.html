@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iberic Cars</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="Imagenes/IBERIC (2).png" alt="Logo de la empresa" />
+      </a>
+    </div>
+    <h1 class="titulo-header">Iberic Cars</h1>
+    <nav>
+      <ul>
+        <li><a href="#buscar">Buscar</a></li>
+        <li class="dropdown cuenta">
+          <a href="#cuenta">Cuenta</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Favoritos ♥</a></li>
+            <li><a href="#">Notificaciones 🔔</a></li>
+            <li><a href="#">Mensajes 📧</a></li>
+            <li><a href="#">Mis compras 💼</a></li>
+          </ul>
+        </li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="login.html"><button class="login">Acceder</button></a> </li>
+        <li><button class="buy">Comprar</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Filtro de búsqueda -->
+  <section class="busqueda" id="buscar">
+    <h2>¡Haz tu búsqueda más fácil y encuentra el coche de tus sueños!</h2>
+    <form>
+      <select id="marca" name="marca">
+        <option value="">Marca</option>
+        <option value="audi">Audi</option>
+        <option value="bmw">BMW</option>
+        <option value="cupra">Cupra</option>
+        <option value="toyota">Toyota</option>
+        <option value="volkswagen">Volkswagen</option>
+      </select>
+      <select id="modelo" name="modelo" disabled>
+        <option value="">Selecciona marca</option>
+      </select>
+      <select>
+        <option>Año</option>
+        <option>2020</option>
+        <option>2021</option>
+        <option>2022</option>
+        <option>2023</option>
+        <option>2024</option>
+      </select>
+      <div class="precio-container">
+        <label for="rangoPrecio">Precio:</label>
+        <input type="range" id="rangoPrecio" min="1000" max="100000" step="1000">
+        <span id="valorPrecio">1000€</span>
+      </div>
+      <button type="submit">Ver Coches Encontrados</button>
+    </form>
+  </section>
+
+  <!-- Coches destacados -->
+  <section class="destacados">
+    <h2>Nuestros mejores coches, para los que buscan lo mejor.</h2>
+    <div class="coches">
+        <div class="coche">
+            <img src="Imagenes/cupra.jpg" alt="Cupra León" class="imagen">
+            <p>Cupra León 33.800€</p>
+            <p>2.0 TSI, 300 CV, año 2023</p>
+            <button>Ver Más</button>
+        </div>
+        <div class="coche">
+            <img src="Imagenes/audi.jpg" alt="Coche 2" class="imagen">
+            <p>Audi A3 S-Line 27.500€</p>
+            <p>2.0 TDI, 150 CV, año 2022</p>
+            <button>Ver Más</button>
+        </div>
+        <div class="coche">
+            <img src="Imagenes/Volkswagen Golf.jpg" alt="Coche 3" class="imagen">
+            <p>Volkswagen Golf 24.300€</p>
+            <p>1.5 eTSI, 130 CV, año 2022</p>
+            <button>Ver Más</button>
+        </div>
+        <div class="coche">
+            <img src="Imagenes/bmw.jpg" alt="Coche 4" class="imagen">
+            <p>BMW Serie 1 29.950€</p>
+            <p>118d, 150 CV, año 2021</p>
+            <button>Ver Más</button>
+        </div>
+        <div class="coche">
+            <img src="Imagenes/toyota.jpg" alt="Toyota Corolla" class="imagen">
+            <p>Toyota Corolla Hybrid 24.200€</p>
+            <p>1.8 Hybrid, 122 CV, año 2022</p>
+            <button>Ver Más</button>
+        </div>
+        <div class="coche">
+            <img src="Imagenes/mercedes.jpg" alt="Mercedes CLA" class="imagen">
+            <p>Mercedes CLA 35.600€</p>
+            <p>CLA 200, 163 CV, año 2022</p>
+            <button>Ver Más</button>
+        </div>
+  </section>
+
+  <!-- Categorías -->
+  <section class="categorias">
+    <h2>Coches para cada necesidad: compactos, SUVs y muchos más.</h2>
+    <div class="tipos">
+      <div class="tipo">
+        <h3>Todoterreno</h3>
+        <p>Un todoterreno robusto y versátil para cualquier terreno.</p>
+      </div>
+      <div class="tipo">
+        <h3>Compacto</h3>
+        <p>Perfecto para la ciudad, con gran eficiencia de combustible.</p>
+      </div>
+      <div class="tipo">
+        <h3>Familiar</h3>
+        <p>Espacio y seguridad para toda la familia.</p>
+      </div>
+      <div class="tipo">
+        <h3>Eléctrico</h3>
+        <p>Innovación y sostenibilidad con 0 emisiones.</p>
+      </div>
+      <div class="tipo">
+        <h3>Deportivo</h3>
+        <p>Velocidad, estilo y potencia en un solo coche.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="columnas">
+      <div>Use cases</div>
+      <div>Explore</div>
+      <div>Resources</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

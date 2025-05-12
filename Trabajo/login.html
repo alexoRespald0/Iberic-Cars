@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión - Iberic Cars</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <video autoplay muted loop id="videoFondo">
+        <source src="videos/coche1.mp4" type="video/mp4">
+        Tu navegador no soporta videos en HTML5.
+    </video>
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+        <form action="validarLogin.jsp" method="post">
+        <input type="text" name="usuario" placeholder="Usuario" required>
+        <input type="password" name="clave" placeholder="Contraseña" required>
+        <button type="submit">Entrar</button>
+        </form>
+        <a class="volver" href="index.html">← Volver al inicio</a>
+        <p class="registro">¿No estás registrado? <a href="registro.html">Pulsa aquí</a></p>
+    </div>
+</body>
+</html>

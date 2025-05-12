@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - Iberic Cars</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <video autoplay muted loop id="videoFondo">
+        <source src="videos/coche2.mp4" type="video/mp4">
+        Tu navegador no soporta videos en HTML5.
+    </video>
+  <div class="login-container">
+    <h2>Crear Cuenta</h2>
+    <form action="procesarRegistro.jsp" method="post">
+      <input type="text" name="usuario" placeholder="Nombre de usuario" required>
+      <input type="email" name="correo" placeholder="Correo electrónico" required>
+      <input type="password" name="clave" placeholder="Contraseña" required>
+      <input type="password" name="clave2" placeholder="Repetir contraseña" required>
+      <button type="submit">Registrarse</button>
+    </form>
+    <a class="volver" href="login.html">← Volver al login</a>
+  </div>
+</body>
+</html>
