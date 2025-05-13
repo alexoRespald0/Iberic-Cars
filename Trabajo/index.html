@@ -17,7 +17,9 @@
     <h1 class="titulo-header">Iberic Cars</h1>
     <nav>
       <ul>
-        <li><a href="#buscar">Buscar</a></li>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="buscar.html">Buscar</a></li>
+        <li><a href="#contacto">Contacto</a></li>
         <li class="dropdown cuenta">
           <a href="#cuenta">Cuenta</a>
           <ul class="dropdown-menu">
@@ -27,8 +29,6 @@
             <li><a href="#">Mis compras 💼</a></li>
           </ul>
         </li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#contacto">Contacto</a></li>
         <li><a href="login.html"><button class="login">Acceder</button></a> </li>
         <li><button class="buy">Comprar</button></li>
       </ul>
@@ -63,7 +63,7 @@
         <input type="range" id="rangoPrecio" min="1000" max="100000" step="1000">
         <span id="valorPrecio">1000€</span>
       </div>
-      <button type="submit">Ver Coches Encontrados</button>
+      <a href="buscar.html" class="boton-ver">Ver Coches Encontrados</a>
     </form>
   </section>
 
@@ -75,37 +75,37 @@
             <img src="Imagenes/cupra.jpg" alt="Cupra León" class="imagen">
             <p>Cupra León 33.800€</p>
             <p>2.0 TSI, 300 CV, año 2023</p>
-            <button>Ver Más</button>
+            <a href="Coches/Coche1.html" class="boton-ver-mas">Ver Más</a>
         </div>
         <div class="coche">
             <img src="Imagenes/audi.jpg" alt="Coche 2" class="imagen">
             <p>Audi A3 S-Line 27.500€</p>
             <p>2.0 TDI, 150 CV, año 2022</p>
-            <button>Ver Más</button>
+            <a href="detalle-cupra.html" class="boton-ver-mas">Ver Más</a>
         </div>
         <div class="coche">
             <img src="Imagenes/Volkswagen Golf.jpg" alt="Coche 3" class="imagen">
             <p>Volkswagen Golf 24.300€</p>
             <p>1.5 eTSI, 130 CV, año 2022</p>
-            <button>Ver Más</button>
+            <a href="detalle-cupra.html" class="boton-ver-mas">Ver Más</a>
         </div>
         <div class="coche">
             <img src="Imagenes/bmw.jpg" alt="Coche 4" class="imagen">
             <p>BMW Serie 1 29.950€</p>
             <p>118d, 150 CV, año 2021</p>
-            <button>Ver Más</button>
+            <a href="detalle-cupra.html" class="boton-ver-mas">Ver Más</a>
         </div>
         <div class="coche">
             <img src="Imagenes/toyota.jpg" alt="Toyota Corolla" class="imagen">
             <p>Toyota Corolla Hybrid 24.200€</p>
             <p>1.8 Hybrid, 122 CV, año 2022</p>
-            <button>Ver Más</button>
+            <a href="detalle-cupra.html" class="boton-ver-mas">Ver Más</a>
         </div>
         <div class="coche">
             <img src="Imagenes/mercedes.jpg" alt="Mercedes CLA" class="imagen">
             <p>Mercedes CLA 35.600€</p>
             <p>CLA 200, 163 CV, año 2022</p>
-            <button>Ver Más</button>
+            <a href="detalle-cupra.html" class="boton-ver-mas">Ver Más</a>
         </div>
   </section>
 
@@ -139,12 +139,31 @@
   <!-- Footer -->
   <footer>
     <div class="columnas">
-      <div>Use cases</div>
-      <div>Explore</div>
-      <div>Resources</div>
+      <!-- Columna 1: Logo y nombre -->
+      <div class="columna logo-columna">
+        <img src="Imagenes/IBERIC (2).png" alt="Logo Iberic Cars" class="footer-logo">
+        <h3>Iberic Cars</h3>
+      </div>
+  
+      <!-- Columna 2: Nosotros -->
+      <div class="columna">
+        <h3>Nosotros</h3>
+        <p>Somos un concesionario especializado en la venta de coches de todo tipo: deportivos, familiares, eléctricos y más. Trabajamos con marcas reconocidas como Audi, BMW, Toyota y Volkswagen.</p>
+      </div>
+  
+      <!-- Columna 3: Contacto -->
+      <div class="columna">
+        <h3>Contacto</h3>
+        <p>📞 Teléfono: +34 600 123 456</p>
+        <p>📷 Instagram: <a href="#">@ibericcars</a></p>
+        <p>📘 Facebook: <a href="#">Iberic Cars Oficial</a></p>
+      </div>
     </div>
-  </footer>
-
+    <!-- Línea inferior de derechos -->
+    <div class="footer-bottom">
+      © 2025 Iberic Cars. Todos los derechos reservados.
+    </div>
+  </footer>  
   <script src="script.js"></script>
 </body>
 </html>

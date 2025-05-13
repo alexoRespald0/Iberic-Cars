@@ -1,6 +1,3 @@
-// script.js
-
-// Mostrar menú desplegable al hacer clic en 'Cuenta'
 document.addEventListener("DOMContentLoaded", () => {
   const cuenta = document.querySelector(".cuenta");
   const dropdown = document.querySelector(".dropdown-menu");
@@ -21,92 +18,64 @@ document.addEventListener("DOMContentLoaded", () => {
     dropdown.style.display = "none";
   });
 
-  // Lógica para mostrar valores de rango de precios (mínimo y máximo)
-  const precioMin = document.getElementById('precioMin');
-  const precioMax = document.getElementById('precioMax');
-  const valoresPrecio = document.getElementById('valoresPrecio');
+  const rangoPrecio = document.getElementById('rangoPrecio');
+  const valorPrecio = document.getElementById('valorPrecio');
 
-  function actualizarValoresPrecio() {
-    const min = parseInt(precioMin.value);
-    const max = parseInt(precioMax.value);
+  // Actualiza texto y fondo del slider
+  function actualizarPrecio() {
+    const valor = parseInt(rangoPrecio.value);
+    valorPrecio.textContent = `${valor.toLocaleString('es-ES')}€`;
 
-    // Evitar que el mínimo supere el máximo
-    if (min > max) {
-      precioMin.value = max;
-    }
+    const min = parseInt(rangoPrecio.min);
+    const max = parseInt(rangoPrecio.max);
+    const porcentaje = ((valor - min) / (max - min)) * 100;
 
-    // Evitar que el máximo sea menor que el mínimo
-    if (max < min) {
-      precioMax.value = min;
-    }
-
-    valoresPrecio.textContent = `${parseInt(precioMin.value).toLocaleString('es-ES')}€ - ${parseInt(precioMax.value).toLocaleString('es-ES')}€`;
-
-    actualizarBarra();
+    // Fondo con progreso visual manteniendo estilo fino
+    rangoPrecio.style.background = `linear-gradient(to right, #333 ${porcentaje}%, #ccc ${porcentaje}%)`;
   }
 
-  function actualizarBarra() {
-    const min = parseInt(precioMin.min);
-    const max = parseInt(precioMin.max);
-    const valorMin = parseInt(precioMin.value);
-    const valorMax = parseInt(precioMax.value);
+  rangoPrecio.addEventListener('input', actualizarPrecio);
+  actualizarPrecio(); // Inicializa al cargar
 
-    const porcentajeMin = ((valorMin - min) / (max - min)) * 100;
-    const porcentajeMax = ((valorMax - min) / (max - min)) * 100;
+  // -------------------------------
+  // Código para selects Marca/Modelo
+  // -------------------------------
 
-    precioMin.style.background = `linear-gradient(to right, #333 ${porcentajeMin}%, #ccc ${porcentajeMin}%)`;
-    precioMax.style.background = `linear-gradient(to right, #333 ${porcentajeMax}%, #ccc ${porcentajeMax}%)`;
-  }
+  const modelosPorMarca = {
+    audi: ["A3", "A4", "Q5", "Q7"],
+    bmw: ["Serie 1", "Serie 3", "X5", "X6"],
+    cupra: ["Leon", "Ateca", "Formentor", "Terramar"],
+    toyota: ["Corolla", "Yaris", "RAV4", "C-HR"],
+    volkswagen: ["Golf", "Polo", "T-roc", "Passat"],
+  };
 
-  precioMin.addEventListener('input', actualizarValoresPrecio);
-  precioMax.addEventListener('input', actualizarValoresPrecio);
+  const marcaSelect = document.getElementById('marca');
+  const modeloSelect = document.getElementById('modelo');
 
-  actualizarValoresPrecio(); // Inicializar al cargar
-});
+  marcaSelect.addEventListener('change', function () {
+    const marcaSeleccionada = this.value;
+    modeloSelect.innerHTML = '';
 
-// Diccionario de marcas y modelos
-const modelosPorMarca = {
-  audi: ["A3", "A4", "Q5", "Q7"],
-  bmw: ["Serie 1", "Serie 3", "X5", "X6"],
-  cupra: ["Leon", "Ateca", "Formentor", "Terramar"],
-  toyota: ["Corolla", "Yaris", "RAV4", "C-HR"],
-  volkswagen: ["Golf", "Polo", "T-roc", "Passat"],
-};
+    if (marcaSeleccionada && modelosPorMarca[marcaSeleccionada]) {
+      modeloSelect.disabled = false;
 
-// Obtener los selects
-const marcaSelect = document.getElementById('marca');
-const modeloSelect = document.getElementById('modelo');
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = 'Modelo';
+      modeloSelect.appendChild(placeholder);
 
-// Escuchar cambios en la marca
-marcaSelect.addEventListener('change', function() {
-  const marcaSeleccionada = this.value;
-
-  // Limpiar los modelos anteriores
-  modeloSelect.innerHTML = '';
-
-  if (marcaSeleccionada && modelosPorMarca[marcaSeleccionada]) {
-    // Habilitar el select de modelo
-    modeloSelect.disabled = false;
-
-    // Añadir un placeholder
-    const placeholder = document.createElement('option');
-    placeholder.value = '';
-    placeholder.textContent = 'Modelo';
-    modeloSelect.appendChild(placeholder);
-
-    // Rellenar modelos correspondientes
-    modelosPorMarca[marcaSeleccionada].forEach(function(modelo) {
+      modelosPorMarca[marcaSeleccionada].forEach(function (modelo) {
+        const option = document.createElement('option');
+        option.value = modelo.toLowerCase().replace(/\s+/g, '-');
+        option.textContent = modelo;
+        modeloSelect.appendChild(option);
+      });
+    } else {
       const option = document.createElement('option');
-      option.value = modelo.toLowerCase().replace(/\s+/g, '-');
-      option.textContent = modelo;
+      option.value = '';
+      option.textContent = 'Selecciona marca';
       modeloSelect.appendChild(option);
-    });
-  } else {
-    // Si no hay marca seleccionada
-    const option = document.createElement('option');
-    option.value = '';
-    option.textContent = 'Selecciona marca';
-    modeloSelect.appendChild(option);
-    modeloSelect.disabled = true;
-  }
+      modeloSelect.disabled = true;
+    }
+  });
 });
