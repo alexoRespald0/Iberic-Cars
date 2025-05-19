@@ -144,7 +144,119 @@
       <div>Resources</div>
     </div>
   </footer>
+  <!-- Botón flotante para abrir el chat -->
+  <button id="toggle-chat" class="chat-toggle">💬</button>
 
+  <!-- Ventana del chatbot -->
+  <div class="chatbot" id="chatbot">
+    <div class="chat-header">
+      🤖 Chat IBERIC CARS
+      <button id="close-chat" style="float: right; background: none; border: none; color: white; font-size: 16px; cursor: pointer;">❌</button>
+    </div>
+    <div class="chat-body" id="chat-body"></div>
+
+    <div class="quick-buttons" id="quick-buttons">
+      <!-- Menú principal -->
+      <div class="menu" id="menu-principal">
+        <button onclick="mostrarMenu('vehiculos')">🚗 Vehículos</button>
+        <button onclick="mostrarMenu('financiacion')">💳 Financiación</button>
+        <button onclick="mostrarMenu('servicios')">🛠 Servicios</button>
+        <button onclick="mostrarMenu('contacto')">📞 Contacto</button>
+      </div>
+
+      <!-- Submenús ocultos -->
+      <div class="menu submenu" id="menu-vehiculos" style="display: none;">
+        <button onclick="responderRapido('¿Qué SUV tienen?')">🚙 SUV</button>
+        <button onclick="responderRapido('¿Tienen coches eléctricos?')">🔋 Eléctricos</button>
+        <button onclick="responderRapido('¿Tienen deportivos?')">🏎 Deportivos</button>
+        <button onclick="volverMenu()">⬅️ Volver</button>
+      </div>
+
+      <div class="menu submenu" id="menu-financiacion" style="display: none;">
+        <button onclick="responderRapido('¿Qué opciones de financiación ofrecen?')">💶 Opciones</button>
+        <button onclick="responderRapido('¿Puedo financiar sin entrada?')">🙅 Sin entrada</button>
+        <button onclick="responderRapido('¿Cuántos meses puedo financiar?')">📅 Plazos</button>
+        <button onclick="volverMenu()">⬅️ Volver</button>
+      </div>
+
+      <div class="menu submenu" id="menu-servicios" style="display: none;">
+        <button onclick="responderRapido('¿Qué garantía tienen los coches?')">✅ Garantía</button>
+        <button onclick="responderRapido('¿Puedo hacer mantenimiento aquí?')">🔧 Mantenimiento</button>
+        <button onclick="responderRapido('¿Ofrecen seguro?')">🛡 Seguro</button>
+        <button onclick="volverMenu()">⬅️ Volver</button>
+      </div>
+
+      <div class="menu submenu" id="menu-contacto" style="display: none;">
+        <button onclick="responderRapido('¿Dónde están ubicados?')">📍 Dirección</button>
+        <button onclick="responderRapido('¿Cuál es su horario?')">🕘 Horario</button>
+        <button onclick="responderRapido('¿Cómo puedo contactarles?')">📧 Correo / Teléfono</button>
+        <button onclick="volverMenu()">⬅️ Volver</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chatBody = document.getElementById("chat-body");
+
+    const respuestas = [
+      { claves: ["suv"], respuesta: "Tenemos Audi Q5, Hyundai Tucson, BMW X3, entre otros SUV." },
+      { claves: ["eléctrico"], respuesta: "Contamos con Tesla Model 3, Kia EV6, Nissan Leaf, etc." },
+      { claves: ["deportivo"], respuesta: "Modelos deportivos: Ford Mustang, BMW M3, Audi S3..." },
+      { claves: ["opciones", "financiación"], respuesta: "Ofrecemos hasta 60 meses con o sin entrada." },
+      { claves: ["entrada"], respuesta: "Sí, puedes financiar sin entrada. ¡Te asesoramos!" },
+      { claves: ["meses", "plazos"], respuesta: "Puedes financiar entre 12 y 60 meses." },
+      { claves: ["garantía"], respuesta: "2 años en coches nuevos y 1 año en seminuevos." },
+      { claves: ["mantenimiento"], respuesta: "Ofrecemos servicio oficial de mantenimiento y revisiones." },
+      { claves: ["seguro"], respuesta: "Tenemos seguros a buen precio con aseguradoras aliadas." },
+      { claves: ["ubicación", "dirección"], respuesta: "Estamos en Calle Gran Vía 123, Madrid." },
+      { claves: ["horario"], respuesta: "Abrimos de lunes a viernes de 9:00 a 18:00 y sábados hasta las 14:00." },
+      { claves: ["contactar", "correo", "teléfono"], respuesta: "Llámanos al 912 345 678 o escribe a info@autogalaxy.com" }
+    ];
+
+    function responderRapido(mensaje) {
+      chatBody.innerHTML += `<div class="user-msg">${mensaje}</div>`;
+      const mensajeLimpio = mensaje.toLowerCase();
+      const respuesta = buscarRespuesta(mensajeLimpio);
+      setTimeout(() => {
+        chatBody.innerHTML += `<div class="bot-msg">${respuesta}</div>`;
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 300);
+    }
+
+    function buscarRespuesta(mensaje) {
+      for (const item of respuestas) {
+        if (item.claves.some(p => mensaje.includes(p))) {
+          return item.respuesta;
+        }
+      }
+      return "No tengo esa información aún 🤖. ¡Pero seguimos mejorando!";
+    }
+
+    function mostrarMenu(menuId) {
+      document.querySelectorAll(".submenu").forEach(m => m.style.display = "none");
+      document.getElementById("menu-principal").style.display = "none";
+      document.getElementById(`menu-${menuId}`).style.display = "flex";
+    }
+
+    function volverMenu() {
+      document.querySelectorAll(".submenu").forEach(m => m.style.display = "none");
+      document.getElementById("menu-principal").style.display = "flex";
+    }
+
+    const toggleButton = document.getElementById("toggle-chat");
+    const chatWindow = document.getElementById("chatbot");
+    const closeButton = document.getElementById("close-chat");
+
+    toggleButton.addEventListener("click", () => {
+      chatWindow.classList.toggle("open");
+      toggleButton.textContent = chatWindow.classList.contains("open") ? "❌" : "💬";
+    });
+
+    closeButton.addEventListener("click", () => {
+      chatWindow.classList.remove("open");
+      toggleButton.textContent = "💬";
+    });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
