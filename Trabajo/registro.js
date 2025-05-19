@@ -15,38 +15,69 @@ const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
   // Manejo del envío del formulario
   registroForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const usuario = usuarioInput.value.trim();
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-    
+  const usuario = usuarioInput.value.trim();
+  const email = emailInput.value.trim();
+  const password = passwordInput.value.trim();
 
-    if (!email || !password || !usuario) {
-      mensaje.textContent = '⚠️ Todos los campos son obligatorios.';
-      return;
-    }
+  if (!email || !password || !usuario) {
+    mensaje.textContent = '⚠️ Todos los campos son obligatorios.';
+    return;
+  }
 
-    // Paso 1: Registro en Supabase Auth
-    const { data, error: signupError } = await supabase.auth.signUp({
-      email,
-      password
-    });
+  // 1. Verificar que el usuario no exista en la tabla
+  const { data: existingUser, error: userError } = await supabase
+    .from('usuario')
+    .select('usuario')
+    .eq('usuario', usuario)
+    .single();
 
-    if (signupError) {
-      mensaje.textContent = 'Error al registrarse: ' + signupError.message;
-      return;
-    }
+  if (password.includes(' ')) {
+  mensaje.textContent = ' La contraseña no puede contener espacios.';
+  mensaje.style.color = 'red';
+  return; // detiene el envío
+}
 
-    // Paso 2: Insertar en la tabla "usuario"
-    const { error: insertError } = await supabase.from('usuario').insert([{
-      usuario: usuario,
-      email: email,
-      password: password // ⚠️ Idealmente debería cifrarse antes
-    }]);
+  if (existingUser) {
+    mensaje.textContent = ' Este  nombre de usuario ya está en uso, por favor introduce otro.';
+    return;
+  }
+  if (userError && userError.code !== 'PGRST116') { 
+    // PGRST116 significa "no encontrado", que está OK
+    mensaje.textContent = 'Error al comprobar nombre de usuario: ' + userError.message;
+    return;
+  }
 
-    mensaje.textContent = insertError
-      ? 'Error al guardar en tabla usuario: ' + insertError.message
-      : '✅ Registro exitoso. Revisa tu email.';
+  // 2. Intentar registrar con email en Auth
+  const { data, error: signupError } = await supabase.auth.signUp({
+    email,
+    password
   });
+
+  if (signupError) {
+    if (signupError.message.includes('already registered')) {
+      mensaje.textContent = ' Este correo ya está registrado, pulsa en el link e inicia sesión.';
+       mensaje.style.color = 'red';
+    } else {
+      mensaje.textContent = 'Error al registrarse: ' + signupError.message;
+    }
+    return;
+  }
+
+  // 3. Insertar datos en tabla usuario
+  const { error: insertError } = await supabase.from('usuario').insert([{
+    usuario: usuario,
+    email: email,
+    password: password // Idealmente cifrar antes
+  }]);
+
+  mensaje.textContent = insertError
+    ? 'Error al guardar en tabla usuario: ' + insertError.message
+    : ' Registro exitoso, redirigiendote a la página de inicio';
+    mensaje.style.color = 'green';
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 3000);
+})
 });

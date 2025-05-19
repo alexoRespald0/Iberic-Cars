@@ -1,3 +1,4 @@
+
 body {
     display: flex;
     justify-content: center;
@@ -105,3 +106,28 @@ body {
     filter: blur(1.5px) brightness(0.85);
   }
   
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* espacio para el icono */
+  height: 40px; /* o el alto que uses */
+  box-sizing: border-box;
+}
+
+.toggle-password {
+
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
