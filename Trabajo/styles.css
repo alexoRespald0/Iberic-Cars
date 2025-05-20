@@ -284,3 +284,133 @@ footer .columnas {
   justify-content: space-around;
   text-align: left;
 }
+.chatbot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 320px;
+  max-height: 500px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-size: 14px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.chat-header {
+  background-color: #0d47a1;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.chat-body {
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Mensajes */
+.user-msg, .bot-msg {
+  max-width: 80%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  word-wrap: break-word;
+}
+
+.user-msg {
+  background-color: #d1e7dd;
+  align-self: flex-end;
+}
+
+.bot-msg {
+  background-color: #f1f1f1;
+  align-self: flex-start;
+}
+
+/* Entrada */
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+
+.chat-input input {
+  flex-grow: 1;
+  border: none;
+  padding: 10px;
+  outline: none;
+}
+
+.chat-input button {
+  background: #0d47a1;
+  color: white;
+  border: none;
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+/* Botones rápidos y menús */
+.quick-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+
+.quick-buttons .menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.quick-buttons button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  flex: 1 1 120px;
+  transition: background-color 0.2s ease;
+}
+
+.quick-buttons button:hover {
+  background-color: #0056b3;
+}
+/* Botón flotante para abrir/cerrar el chat */
+.chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  background-color: #0d47a1;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Chat oculto por defecto */
+.chatbot {
+  display: none;
+}
+.chatbot.open {
+  display: flex;
+}
