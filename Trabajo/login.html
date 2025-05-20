@@ -7,20 +7,29 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="login.css">
 </head>
+
 <body>
-    <video autoplay muted loop id="videoFondo">
-        <source src="videos/coche1.mp4" type="video/mp4">
-        Tu navegador no soporta videos en HTML5.
-    </video>
+  <a href="index.html">
+        <img src="Imagenes/IBERIC (2).png" alt="Logo de la empresa" />
+      </a>
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
-        <form action="validarLogin.jsp" method="post">
-        <input type="text" name="usuario" placeholder="Usuario" required>
-        <input type="password" name="clave" placeholder="Contraseña" required>
+       <form id="login-form">
+
+        <input type="email" id="email" placeholder="Introduce aquí tu email" required>
+          <div class="password-wrapper">
+            <input type="password" id="password" placeholder="Introduce aquí tu Contraseña" required>
+              <span id="togglePassword" class="toggle-password">👁️</span>
+          </div>
         <button type="submit">Entrar</button>
         </form>
         <a class="volver" href="index.html">← Volver al inicio</a>
         <p class="registro">¿No estás registrado? <a href="registro.html">Pulsa aquí</a></p>
+        <p id="mensaje"></p>
     </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js" ></script>
+  <script src="login.js" ></script>
+  
 </body>
 </html>
