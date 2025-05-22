@@ -1,0 +1,439 @@
+/* ====== Estilos generales (manteniendo los tuyos) ====== */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+    color: #333;
+    background-image: url('Imagenes/IBERIC (2).png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: 40%;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: -1;
+}
+
+/* ====== HEADER (igual que tu CSS original) ====== */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+}
+
+header.sticky {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+.titulo-header {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #111;
+    margin: 0 2rem;
+    white-space: nowrap;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+    text-transform: uppercase;
+    flex: 1;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+}
+
+.login, .buy {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login {
+    background: white;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+.login:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.05);
+}
+
+.buy {
+    background: #333;
+    color: white;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    border-radius: 4px;
+    flex-direction: column;
+    min-width: 150px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+/* ====== Sección BUSQUEDA (filtros) ====== */
+/* Manteniendo estructura y fondo, pero colores adaptados a tu estilo */
+
+.busqueda {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 2rem auto;
+    max-width: 800px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 40px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.busqueda h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #111;
+    font-weight: 800;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.fila-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.filtro {
+    flex: 1 1 22%;
+    min-width: 160px;
+}
+
+.filtro label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-align: left;
+    color: #111;
+}
+
+.filtro select {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    white-space: normal;
+    transition: border-color 0.3s ease;
+}
+
+.filtro select:focus {
+    border-color: #333;
+    outline: none;
+}
+
+.filtro .precio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.filtro .precio-container input[type="range"] {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.filtro .precio-container .precio-valor {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.precio-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+#precio {
+    width: 100%;
+    height: 8px;
+    background: #ccc;
+    border-radius: 5px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+#precio::-webkit-slider-thumb,
+#precio::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: #333;
+    border-radius: 50%;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Botón de aplicar filtro */
+button[type=submit] {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+button[type=submit]:hover {
+    background: #444;
+}
+
+/* ====== RESULTADOS ====== */
+/* Contenedor y título */
+
+.resultados {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 2rem auto;
+    max-width: 1200px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.resultados h2 {
+    margin-bottom: 1rem;
+    color: #111;
+    font-weight: 800;
+}
+
+/* Lista vertical flex column */
+
+.coches {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Tarjeta coche extendida horizontal, con animación */
+
+.coche-card {
+    display: flex;
+    align-items: center;
+    background: rgba(240, 240, 240, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    padding: 15px 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+.coche-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.18);
+}
+
+/* Imagen del coche */
+
+.coche-card img {
+    width: 200px;
+    height: 130px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 25px;
+}
+
+/* Información texto */
+
+.coche-info {
+  padding: 15px 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.coche-info h3 {
+  font-size: 1.3rem;
+  color: #222;
+  margin: 0 0 12px 0;
+  font-weight: 700;
+}
+
+/* Especificaciones en filas */
+
+.especificaciones {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.especificacion {
+  font-size: 1rem;
+  color: #555;
+  margin: 0;
+}
+
+.especificaciones-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* ====== PAGINACIÓN ====== */
+
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.paginacion button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.paginacion button:hover:not(:disabled) {
+    background: #555;
+}
+
+.paginacion button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* ====== FOOTER (igual que tu CSS original) ====== */
+
+footer {
+    background: #333;
+    color: white;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid #444;
+}
+
+footer .columnas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    text-align: left;
+}
+
+footer .columna {
+    flex: 1 1 30%;
+}
+
+.logo-columna {
+    text-align: center;
+}
+
+.footer-logo {
+    width: 140px;
+    height: auto;
+    margin-bottom: 0.5rem;
+}
+
+.logo-columna h3 {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+footer h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+footer p, footer a {
+    font-size: 0.95rem;
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #f1f1f1;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #aaa;
+    border-top: 1px solid #444;
+    padding-top: 1rem;
+}
