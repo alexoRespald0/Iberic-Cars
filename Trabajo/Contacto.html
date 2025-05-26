@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto - Iberic Cars</title>
+  <link rel="stylesheet" href="Contacto.css">
+    <link rel="icon" type="image/png" href="Imagenes/IBERIC (2).png">
+  
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <a href="/index.html">
+        <img src="Imagenes/IBERIC (2).png" alt="Logo de la empresa" />
+      </a>
+    </div>
+    <h1 class="titulo-header">Iberic Cars</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="buscar.html">Buscar</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+       <li>
+        	<a id="btn-sesion" href="login.html">
+    			<button class="login">Acceder</button>
+  			</a>
+        </li>
+        <li><button class="buy">Comprar</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Sección de contacto -->
+  <section class="contacto">
+  <div class="info-contacto">
+    <p>¿Tienes alguna duda? Estamos aquí para ayudarte. Puedes escribirnos a través del formulario o usar los datos de contacto directos.</p>
+    <h3>Contacto</h3>
+    <p class="datos-contacto">📞 +34 600 123 456</p>
+    <p class="datos-contacto">✉️ contacto@ibericcars.com</p>
+  </div>
+
+  <form class="formulario-contacto">
+    <input type="text" placeholder="Nombre" required>
+    <input type="email" placeholder="Correo electrónico" required>
+    <textarea rows="5" placeholder="Mensaje" required></textarea>
+    <button type="submit" class="boton-enviar">Enviar</button>
+  </form>
+</section>
+
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="columnas">
+      <div class="columna logo-columna">
+        <img src="../Imagenes/IBERIC (2).png" alt="Logo Iberic Cars" class="footer-logo">
+        <h3>Iberic Cars</h3>
+      </div>
+      <div class="columna">
+        <h3>Nosotros</h3>
+        <p>Somos un concesionario especializado en la venta de coches de todo tipo: deportivos, familiares, eléctricos y más. Trabajamos con marcas reconocidas como Audi, BMW, Toyota y Volkswagen.</p>
+      </div>
+      <div class="columna">
+        <h3>Contacto</h3>
+        <p>📞 Teléfono: +34 600 123 456</p>
+        <p>📷 Instagram: <a href="#">@ibericcars</a></p>
+        <p>📘 Facebook: <a href="#">Iberic Cars Oficial</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Iberic Cars. Todos los derechos reservados.
+    </div>
+  </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
