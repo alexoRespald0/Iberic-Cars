@@ -10,11 +10,6 @@ const passwordInput = document.getElementById('password');
 const mensaje = document.getElementById('mensaje');
 const togglePassword = document.getElementById('togglePassword');
 
-togglePassword.addEventListener('click', () => {
-  const isPasswordVisible = passwordInput.type === 'text';
-  passwordInput.type = isPasswordVisible ? 'password' : 'text';
-  togglePassword.textContent = isPasswordVisible ? '👁️' : '🙈'; // cambia el icono
-});
 
 loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();

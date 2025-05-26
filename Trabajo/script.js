@@ -1,25 +1,32 @@
 // script.js
 
-// Mostrar menú desplegable al hacer clic en 'Cuenta'
-document.addEventListener("DOMContentLoaded", () => {
-  const cuenta = document.querySelector(".cuenta");
-  const dropdown = document.querySelector(".dropdown-menu");
+const supabaseUrl = 'https://yhcivepnywbvskalfqfd.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InloY2l2ZXBueXdidnNrYWxmcWZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcwODA5ODgsImV4cCI6MjA2MjY1Njk4OH0.Nl2_D3j5MHTuGnIaelVrREqLqQSPE-Z8ciVnaJGVa-w'; // tu clave pública real
 
-  cuenta.addEventListener("mouseenter", () => {
-    dropdown.style.display = "flex";
-  });
+// Aquí usamos la variable global "window.supabase"
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-  cuenta.addEventListener("mouseleave", () => {
-    dropdown.style.display = "none";
-  });
+document.addEventListener("DOMContentLoaded", async () => {
+   const btnSesion = document.getElementById('btn-sesion');
+   const loginButton = btnSesion.querySelector('button');
 
-  dropdown.addEventListener("mouseenter", () => {
-    dropdown.style.display = "flex";
-  });
+   const { data, error } = await supabase.auth.getUser();
 
-  dropdown.addEventListener("mouseleave", () => {
-    dropdown.style.display = "none";
-  });
+   if (data.user) {
+     // Si hay un usuario logueado
+     loginButton.textContent = 'Cerrar sesión';
+     btnSesion.removeAttribute('href'); // Evita que redirija
+     btnSesion.addEventListener('click', async () => {
+       await supabase.auth.signOut();
+       window.location.reload();
+     });
+   } else {
+     // Si no hay sesión
+     loginButton.textContent = 'Acceder';
+     btnSesion.setAttribute('href', 'login.html');
+   }
+ });
+
 
   // Lógica para mostrar valores de rango de precios (mínimo y máximo)
   const precioMin = document.getElementById('precioMin');
@@ -44,25 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     actualizarBarra();
   }
-
-  function actualizarBarra() {
-    const min = parseInt(precioMin.min);
-    const max = parseInt(precioMin.max);
-    const valorMin = parseInt(precioMin.value);
-    const valorMax = parseInt(precioMax.value);
-
-    const porcentajeMin = ((valorMin - min) / (max - min)) * 100;
-    const porcentajeMax = ((valorMax - min) / (max - min)) * 100;
-
-    precioMin.style.background = `linear-gradient(to right, #333 ${porcentajeMin}%, #ccc ${porcentajeMin}%)`;
-    precioMax.style.background = `linear-gradient(to right, #333 ${porcentajeMax}%, #ccc ${porcentajeMax}%)`;
-  }
-
-  precioMin.addEventListener('input', actualizarValoresPrecio);
-  precioMax.addEventListener('input', actualizarValoresPrecio);
-
-  actualizarValoresPrecio(); // Inicializar al cargar
-});
+  
 
 // Diccionario de marcas y modelos
 const modelosPorMarca = {
@@ -109,4 +98,9 @@ marcaSelect.addEventListener('change', function() {
     modeloSelect.appendChild(option);
     modeloSelect.disabled = true;
   }
+  
+
+   
+  // Ejecutar al cargar
+
 });
