@@ -29,9 +29,17 @@ header {
   justify-content: space-between;
   align-items: center;
   background: white;
+  position: sticky;
+  top: 0; /* Asegura que se quede en la parte superior */
+  z-index: 1000; /* Asegura que el header quede por encima de otros elementos */
   padding: 1rem 2rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   flex-wrap: wrap;
+}
+
+/* Asegurarte de que el fondo del header no se vea extraño al hacer scroll */
+header.sticky {
+  background-color: rgba(255, 255, 255, 0.95);
 }
 
 .logo img {
@@ -126,7 +134,7 @@ nav a {
   max-width: 800px;
   border-radius: 8px;
   text-align: center;
-  margin-top: 140px;
+  margin-top: 40px;
 }
 
 .busqueda h2 {
@@ -175,48 +183,62 @@ button[type=submit] {
   font-size: 1rem;
 }
 
-input[type=range] {
+input[type="range"] {
   -webkit-appearance: none;
-  width: 200px;
-  height: 6px; /* barra fina */
-  background: transparent;
-  margin: 0;
-  padding: 0;
-}
-
-/* Pista */
-input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
-  height: 6px;
+  height: 4px; /* Más ancha */
   background: #ccc;
-  border-radius: 5px;
+  border-radius: 2px;
+  outline: none;
+  padding: 0;
+  margin: 0;
 }
 
-/* Thumb (el circulito) */
-input[type=range]::-webkit-slider-thumb {
+/* Chrome, Safari, Edge */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px; /* Más ancha */
+  background: transparent;
+  border-radius: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  appearance: none;
-  width: 16px;
   height: 16px;
+  width: 16px;
   border-radius: 50%;
   background: #333;
   cursor: pointer;
-  margin-top: -5px; /* para centrar en la pista de 6px */
+  margin-top: -6px; /* Centrado para pista de 4px */
+  border: none;
 }
 
 /* Firefox */
-input[type=range]::-moz-range-track {
-  height: 6px;
-  background: #ccc;
-  border-radius: 5px;
+input[type="range"]::-moz-range-track {
+  height: 4px; /* Más ancha */
+  background: transparent;
+  border-radius: 2px;
 }
 
-input[type=range]::-moz-range-thumb {
-  width: 16px;
+input[type="range"]::-moz-range-thumb {
   height: 16px;
+  width: 16px;
   border-radius: 50%;
   background: #333;
   cursor: pointer;
+  border: none;
+}
+
+.boton-ver {
+  display: inline-block;
+  background: #333;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
+}
+.boton-ver:hover {
+  background: #555;
 }
 
 
@@ -241,6 +263,7 @@ input[type=range]::-moz-range-thumb {
   justify-content: center;
 }
 
+/* Efecto al pasar el cursor sobre cada coche */
 .coche {
   background: rgba(240, 240, 240, 0.85);
   padding: 1rem;
@@ -248,7 +271,31 @@ input[type=range]::-moz-range-thumb {
   flex: 1 1 calc(25% - 2rem);
   min-width: 220px;
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+.coche:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón Ver Más dentro de los coches */
+.coche a.boton-ver-mas {
+  display: inline-block;
+  margin-top: 0.5rem;
+  background: #333;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.coche a.boton-ver-mas:hover {
+  background: #555;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 
 .coche .imagen {
   width: 100%;
@@ -272,15 +319,64 @@ input[type=range]::-moz-range-thumb {
   text-align: center;
 }
 
+/* Footer */
 footer {
-  background: rgba(255, 255, 255, 0.85);
+  background: #333;
+  color: white;
   padding: 2rem;
   margin-top: 2rem;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #444;
 }
 
 footer .columnas {
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
   text-align: left;
+}
+
+footer .columna {
+  flex: 1 1 30%;
+}
+
+.logo-columna {
+  text-align: center;
+}
+
+.footer-logo {
+  width: 140px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.logo-columna h3 {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+footer h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+footer p, footer a {
+  font-size: 0.95rem;
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #f1f1f1;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #aaa;
+  border-top: 1px solid #444;
+  padding-top: 1rem;
 }
