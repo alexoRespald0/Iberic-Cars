@@ -38,7 +38,6 @@ header {
     flex-wrap: wrap;
 }
 
-/* Asegurarte de que el fondo del header no se vea extraño al hacer scroll */
 header.sticky {
     background-color: rgba(255, 255, 255, 0.95);
 }
@@ -105,27 +104,6 @@ nav a {
     color: white;
 }
 
-.dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 2rem;
-    left: 0;
-    background: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 0.5rem;
-    border-radius: 4px;
-    flex-direction: column;
-    min-width: 150px;
-    z-index: 1;
-}
-
-.dropdown:hover .dropdown-menu {
-    display: flex;
-}
 
 /* Footer */
 footer {
