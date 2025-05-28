@@ -340,7 +340,7 @@ footer a:hover {
 }
 
 /* Formulario a la derecha */
-.formulario-contacto {
+.contact-form{
   flex: 1.1;
   display: flex;
   flex-direction: column;
@@ -349,8 +349,8 @@ footer a:hover {
   padding-right: 1rem; /* Y también a la derecha */
 }
 
-.formulario-contacto input,
-.formulario-contacto textarea {
+.contact-form input,
+.contact-form textarea {
   width: 100%;
   padding: 1rem 1.2rem;
   border: 1px solid #ccc;
@@ -360,8 +360,8 @@ footer a:hover {
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.formulario-contacto input:focus,
-.formulario-contacto textarea:focus {
+.contact-form input:focus,
+.contact-form textarea:focus {
   border-color: #888;
   outline: none;
   box-shadow: 0 0 0 3px rgba(100, 100, 100, 0.1);

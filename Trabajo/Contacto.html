@@ -38,24 +38,23 @@
     <p>¿Tienes alguna duda? Estamos aquí para ayudarte. Puedes escribirnos a través del formulario o usar los datos de contacto directos.</p>
     <h3>Contacto</h3>
     <p class="datos-contacto">📞 +34 600 123 456</p>
-    <p class="datos-contacto">✉️ contacto@ibericcars.com</p>
+    <p class="datos-contacto">✉️ ibericcars1@outlook.es</p>
   </div>
 
-  <form class="formulario-contacto">
-    <input type="text" placeholder="Nombre" required>
-    <input type="email" placeholder="Correo electrónico" required>
-    <textarea rows="5" placeholder="Mensaje" required></textarea>
+  <form id="contact-form" class="contact-form">
+  <input type="hidden" name="to_email" value="ibericcars1@outlook.es" />
+     <input type="text" name="user_name" placeholder="Nombre" required />
+    <input type="email" name="user_email" placeholder="Correo electrónico" required />
+    <textarea rows="5" name="message" placeholder="Mensaje" required></textarea>
     <button type="submit" class="boton-enviar">Enviar</button>
+     <p id="respuesta-formulario"></p> 
   </form>
 </section>
 
-
-
-  <!-- Footer -->
   <footer>
     <div class="columnas">
       <div class="columna logo-columna">
-        <img src="../Imagenes/IBERIC (2).png" alt="Logo Iberic Cars" class="footer-logo">
+        <img src="..Imagenes/IBERIC (2).png" alt="Logo Iberic Cars" class="footer-logo">
         <h3>Iberic Cars</h3>
       </div>
       <div class="columna">
@@ -75,5 +74,25 @@
   </footer>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("UyQIM9Aox3_DlbSNO"); // Tu Public Key de EmailJS
+  })();
+
+  document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm("service_xq57o1c", "template_2hampk2", this)
+      .then(function(response) {
+        document.getElementById("respuesta-formulario").textContent = "✅ El mensaje se ha enviado correctamente, le responderemos en el menor tiempo posible.";
+      }, function(error) {
+        document.getElementById("respuesta-formulario").textContent = "❌ ha ocurrido un error, por favor intentalo de nuevo.";
+        console.error("EmailJS Error:", error);
+      });
+
+    this.reset();
+  });
+</script>
 </body>
 </html>
