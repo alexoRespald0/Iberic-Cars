@@ -8,20 +8,22 @@
   <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <video autoplay muted loop id="videoFondo">
-        <source src="videos/coche3.mp4" type="video/mp4">
-        Tu navegador no soporta videos en HTML5.
-    </video>
+  
   <div class="login-container">
     <h2>Crear Cuenta</h2>
-    <form action="procesarRegistro.jsp" method="post">
-      <input type="text" name="usuario" placeholder="Nombre de usuario" required>
-      <input type="email" name="correo" placeholder="Correo electrónico" required>
-      <input type="password" name="clave" placeholder="Contraseña" required>
-      <input type="password" name="clave2" placeholder="Repetir contraseña" required>
+    <form id="registro-form">
+      <input type="text" id="usuario" placeholder="Nombre de usuario" required>
+      <input type="email" id="email" placeholder="Correo electrónico" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
       <button type="submit">Registrarse</button>
     </form>
+
+    <p id="mensaje"></p> <!-- Contenedor para mensajes -->
+
     <a class="volver" href="login.html">← Volver al login</a>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="registro.js"></script>
 </body>
 </html>

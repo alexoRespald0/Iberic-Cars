@@ -19,17 +19,9 @@
       <ul>
         <li><a href="index.html">Inicio</a></li>
         <li><a href="buscar.html">Buscar</a></li>
+        <li><a href="favorito.html">Favoritos</a></li>
         <li><a href="Contacto/contacto.html">Contacto</a></li>
-        <li class="dropdown cuenta">
-          <a href="#cuenta">Cuenta</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Favoritos ♥</a></li>
-            <li><a href="#">Notificaciones 🔔</a></li>
-            <li><a href="#">Mensajes 📧</a></li>
-            <li><a href="#">Mis compras 💼</a></li>
-          </ul>
-        </li>
-        <li><a href="login.html"><button class="login">Acceder</button></a> </li>
+        <li><a href="login.html"><button class="login">Acceder</button></a></li>
         <li><button class="buy">Comprar</button></li>
       </ul>
     </nav>
@@ -38,19 +30,12 @@
   <!-- Filtro de búsqueda -->
   <section class="busqueda" id="buscar">
     <h2>¡Busca tu coche!</h2>
-    <form id="filtros">
+    <form id="filtros" method="GET" action="buscar.html">
       <!-- Fila 1 -->
       <div class="fila-filtros">
         <div class="filtro">
           <label for="marca">Marca:</label>
-          <select id="marca" name="marca">
-            <option value="">Selecciona marca</option>
-            <option value="audi">Audi</option>
-            <option value="bmw">BMW</option>
-            <option value="cupra">Cupra</option>
-            <option value="toyota">Toyota</option>
-            <option value="volkswagen">Volkswagen</option>
-          </select>
+          <select id="marca" name="marca"></select>
         </div>
         <div class="filtro">
           <label for="modelo">Modelo:</label>
@@ -60,61 +45,41 @@
         </div>
         <div class="filtro">
           <label for="transmision">Transmisión:</label>
-          <select id="transmision" name="transmision">
-            <option value="">Selecciona transmisión</option>
-            <option value="manual">Manual</option>
-            <option value="automatico">Automático</option>
-          </select>
+          <select id="transmision" name="transmision"></select>
         </div>
         <div class="filtro">
           <label for="combustible">Combustible:</label>
-          <select id="combustible" name="combustible">
-            <option value="">Selecciona combustible</option>
-            <option value="diesel">Diésel</option>
-            <option value="gasolina">Gasolina</option>
-            <option value="electrico">Eléctrico</option>
-            <option value="hibrido">Híbrido</option>
-          </select>
+          <select id="combustible" name="combustible"></select>
         </div>
       </div>
 
       <!-- Fila 2 -->
       <div class="fila-filtros">
         <div class="filtro">
-          <label for="potencia">Potencia:</label>
-          <select id="potencia" name="potencia">
-            <option value="">Selecciona potencia</option>
-            <option value="menos_100">Menos de 100 CV</option>
-            <option value="100_150">100-150 CV</option>
-            <option value="mas_150">Más de 150 CV</option>
-          </select>
+          <label for="año">Año:</label>
+          <select id="año" name="año"></select>
         </div>
         <div class="filtro">
           <label for="color">Color:</label>
-          <select id="color" name="color">
-            <option value="">Selecciona color</option>
-            <option value="rojo">Rojo</option>
-            <option value="azul">Azul</option>
-            <option value="negro">Negro</option>
-            <option value="blanco">Blanco</option>
-          </select>
+          <select id="color" name="color"></select>
         </div>
         <div class="filtro">
           <label for="puertas">Puertas:</label>
-          <select id="puertas" name="puertas">
-            <option value="">Selecciona puertas</option>
-            <option value="3">3 puertas</option>
-            <option value="5">5 puertas</option>
-          </select>
+          <select id="puertas" name="puertas"></select>
+        </div>
+        <div class="filtro">
+          <label for="carroceria">Carrocería:</label>
+          <select id="carroceria" name="carroceria"></select>
         </div>
          <!-- Filtro de precio -->
-      <div class="filtro">
-        <label for="precio">Precio:</label>
-        <div class="precio-container">
-          <input type="range" id="precio" min="1000" max="100000" step="500" value="1000">
-          <span class="precio-valor">1000€</span> <!-- Aquí se mostrará el valor actual -->
+        <div class="filtro filtro-precio">
+          <label for="precio">
+            Precio: <span class="precio-valor">1000€</span>
+          </label>
+          <div class="precio-container">
+            <input type="range" id="precio" name="precio" min="1000" max="150000" step="500" value="150000">
+          </div>
         </div>
-      </div>
         <div class="filtro">
           <label style="visibility: hidden;">Aplicar</label>
           <button type="submit" class="boton-aplicar">Aplicar filtros</button>
@@ -126,7 +91,7 @@
   <!-- Resultados de búsqueda -->
   <section class="resultados">
     <h2>Coches encontrados</h2>
-    <div class="coches">
+    <div id="resultados" class="coches">
       <!-- Aquí se generarán las tarjetas de coches dinámicamente -->
     </div>
     <nav class="paginacion">
@@ -139,19 +104,14 @@
   <!-- Footer -->
   <footer>
     <div class="columnas">
-      <!-- Columna 1: Logo y nombre -->
       <div class="columna logo-columna">
         <img src="Imagenes/IBERIC (2).png" alt="Logo Iberic Cars" class="footer-logo">
         <h3>Iberic Cars</h3>
       </div>
-  
-      <!-- Columna 2: Nosotros -->
       <div class="columna">
         <h3>Nosotros</h3>
         <p>Somos un concesionario especializado en la venta de coches de todo tipo: deportivos, familiares, eléctricos y más. Trabajamos con marcas reconocidas como Audi, BMW, Toyota y Volkswagen.</p>
       </div>
-  
-      <!-- Columna 3: Contacto -->
       <div class="columna">
         <h3>Contacto</h3>
         <p>📞 Teléfono: +34 600 123 456</p>
@@ -159,11 +119,20 @@
         <p>📘 Facebook: <a href="#">Iberic Cars Oficial</a></p>
       </div>
     </div>
-    <!-- Línea inferior de derechos -->
     <div class="footer-bottom">
       © 2025 Iberic Cars. Todos los derechos reservados.
     </div>
   </footer>  
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="script_buscar.js"></script>
+  <script>
+  const rango = document.getElementById("precio");
+  const etiqueta = document.querySelector(".precio-valor");
+
+  rango.addEventListener("input", () => {
+    etiqueta.textContent = `${rango.value}€`;
+  });
+</script>
 </body>
 </html>

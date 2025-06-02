@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mis Favoritos - Iberic Cars</title>
+  <link rel="stylesheet" href="favorito.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <!-- HEADER -->
+    <header>
+    <div class="logo">
+        <a href="index.html">
+        <img src="Imagenes/IBERIC (2).png" alt="Logo de la empresa" />
+        </a>
+    </div>
+    <h1 class="titulo-header">Iberic Cars</h1>
+    <nav>
+        <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="buscar.html">Buscar</a></li>
+        <li><a href="favorito.html">Favoritos</a></li>
+        <li><a href="Contacto/contacto.html">Contacto</a></li>
+        <li><a href="login.html"><button class="login">Acceder</button></a></li>
+        <li><button class="buy">Comprar</button></li>
+        </ul>
+    </nav>
+    </header>
+    <main class="main-favoritos">
+    <section class="favoritos-wrapper">
+        <h2>🚗 Mis Favoritos</h2>
+
+        <div class="lista-favoritos">
+        <!-- Tarjeta de coche favorito -->
+        <article class="favorito-card">
+            <img src="Imagenes/audi.jpg" alt="Audi A4 2020" />
+            <div class="info">
+            <h3>Audi A4 2.0 TDI</h3>
+            <p>2020 · Diésel · 45.000 km</p>
+            <p class="precio">25.900 €</p>
+            <div class="acciones">
+                <button class="btn-detalles">Ver más</button>
+                <button class="btn-eliminar">Eliminar</button>
+            </div>
+            </div>
+        </article>
+
+        <!-- Más tarjetas aquí dinámicamente o duplicadas -->
+        </div>
+
+        <!-- Si no hay favoritos -->
+        <div class="vacio">
+        <p>No tienes coches en favoritos todavía.</p>
+        </div>
+    </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+    <div class="columnas">
+        <div class="columna logo-columna">
+        <img src="Imagenes/IBERIC (2).png" alt="Logo Iberic Cars" class="footer-logo">
+        <h3>Iberic Cars</h3>
+        </div>
+        <div class="columna">
+        <h3>Nosotros</h3>
+        <p>Somos un concesionario especializado en la venta de coches de todo tipo: deportivos, familiares, eléctricos y más. Trabajamos con marcas reconocidas como Audi, BMW, Toyota y Volkswagen.</p>
+        </div>
+        <div class="columna">
+        <h3>Contacto</h3>
+        <p>📞 Teléfono: +34 600 123 456</p>
+        <p>📷 Instagram: <a href="#">@ibericcars</a></p>
+        <p>📘 Facebook: <a href="#">Iberic Cars Oficial</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2025 Iberic Cars. Todos los derechos reservados.
+    </div>
+    </footer>
+
+
+</body>
+</html>
