@@ -181,7 +181,14 @@ async function cargarCoches(pagina = 1) {
           <div class="spec-item">Color: ${coche.color || "No especificado"}</div>
         </div>
       </div>
+	  
     `;
+	
+	card.addEventListener("click", () => {
+	  // Redirigir a anuncio.html pasando el id como parámetro en la URL
+	  window.location.href = `anuncio.html?id_coche=${coche.id_coche}`;
+	});
+	
     contenedor.appendChild(card);
   });
 
