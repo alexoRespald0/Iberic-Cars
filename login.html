@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión - Iberic Cars</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="login.css">
+  <link rel="icon" type="image/png" href="Imagenes/IBERIC (2).png">
+</head>
+
+<body>
+  <a href="index.html">
+        <img src="Imagenes/IBERIC (2).png" alt="Logo de la empresa" />
+      </a>
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+       <form id="login-form">
+
+        <input type="email" id="email" placeholder="Introduce aquí tu email" required>
+          <div class="password-wrapper">
+            <input type="password" id="password" placeholder="Introduce aquí tu Contraseña" required>
+            
+          </div>
+        <button type="submit">Entrar</button>
+        </form>
+        <a class="volver" href="index.html">← Volver al inicio</a>
+        <p class="registro">¿No estás registrado? <a href="registro.html">Pulsa aquí</a></p>
+        <p id="mensaje"></p>
+    </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js" ></script>
+  <script src="login.js" ></script>
+  
+</body>
+</html>
