@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iberic Cars</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="Imagenes/IBERIC (2).png" alt="Logo de la empresa" />
+      </a>
+    </div>
+    <h1 class="titulo-header">Iberic Cars</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="buscar.html">Buscar</a></li>
+        <li><a href="favorito.html">Favoritos</a></li>
+        <li><a href="Contacto/contacto.html">Contacto</a></li>
+        <li><a href="login.html"><button class="login">Acceder</button></a> </li>
+        <li><button class="buy">Comprar</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Filtro de búsqueda -->
+  <section class="busqueda" id="buscar">
+    <h2>¡Haz tu búsqueda más fácil y encuentra el coche de tus sueños!</h2>
+    <form method="GET" action="buscar.html">
+      <select id="marca" name="marca">
+        <option value="">Marca</option>
+      </select>
+      <select id="modelo" name="modelo" disabled>
+        <option value="">Selecciona marca</option>
+      </select>
+      <select id="año" name="año">
+        <option value="">Año</option>
+      </select>
+      <div class="precio-container">
+        <label for="rangoPrecio">Precio:</label>
+        <input type="range" id="rangoPrecio" min="1000" max="150000" value="150000" step="1000">
+        <span id="valorPrecio">150000€</span>
+      </div>
+      <button type="submit" class="boton-ver">Ver Coches Encontrados</button>
+    </form>
+  </section>
+
+  <!-- Coches destacados -->
+  <section class="destacados">
+    <h2>Nuestros mejores coches, para los que buscan lo mejor.</h2>
+    <div class="coches">
+        <div class="coche">
+            <img src="Imagenes/cupra.jpg" alt="Cupra León" class="imagen">
+            <p>Cupra León 33.800€</p>
+            <p>2.0 TSI, 300 CV, año 2023</p>
+            <a href="Coches/Coche1.html" class="boton-ver-mas">Ver Más</a>
+        </div>
+        <div class="coche">
+            <img src="Imagenes/audi.jpg" alt="Coche 2" class="imagen">
+            <p>Audi A3 S-Line 27.500€</p>
+            <p>2.0 TDI, 150 CV, año 2022</p>
+            <a href="detalle-cupra.html" class="boton-ver-mas">Ver Más</a>
+        </div>
+        <div class="coche">
+            <img src="Imagenes/Volkswagen Golf.jpg" alt="Coche 3" class="imagen">
+            <p>Volkswagen Golf 24.300€</p>
+            <p>1.5 eTSI, 130 CV, año 2022</p>
+            <a href="detalle-cupra.html" class="boton-ver-mas">Ver Más</a>
+        </div>
+        <div class="coche">
+            <img src="Imagenes/bmw.jpg" alt="Coche 4" class="imagen">
+            <p>BMW Serie 1 29.950€</p>
+            <p>118d, 150 CV, año 2021</p>
+            <a href="detalle-cupra.html" class="boton-ver-mas">Ver Más</a>
+        </div>
+        <div class="coche">
+            <img src="Imagenes/toyota.jpg" alt="Toyota Corolla" class="imagen">
+            <p>Toyota Corolla Hybrid 24.200€</p>
+            <p>1.8 Hybrid, 122 CV, año 2022</p>
+            <a href="detalle-cupra.html" class="boton-ver-mas">Ver Más</a>
+        </div>
+        <div class="coche">
+            <img src="Imagenes/mercedes.jpg" alt="Mercedes CLA" class="imagen">
+            <p>Mercedes CLA 35.600€</p>
+            <p>CLA 200, 163 CV, año 2022</p>
+            <a href="detalle-cupra.html" class="boton-ver-mas">Ver Más</a>
+        </div>
+  </section>
+
+ <!-- Categorías -->
+  <section class="categorias">
+    <h2>Elige el tipo de carrocería que mejor se adapta a tu estilo.</h2>
+    <div class="tipos">
+      <div class="tipo" data-carroceria="berlina" style="cursor:pointer;">
+        <h3>Berlina</h3>
+        <p>Diseño elegante y cómodo, ideal para quienes buscan confort en viajes largos.</p>
+      </div>
+      <div class="tipo" data-carroceria="compacto" style="cursor:pointer;">
+        <h3>Compacto</h3>
+        <p>Ágil y eficiente para moverte fácilmente por la ciudad sin renunciar al estilo.</p>
+      </div>
+      <div class="tipo" data-carroceria="coupe" style="cursor:pointer;">
+        <h3>Coupé</h3>
+        <p>Diseño deportivo y prestaciones potentes para los que disfrutan al volante.</p>
+      </div>
+      <div class="tipo" data-carroceria="roadster" style="cursor:pointer;">
+        <h3>Roadster</h3>
+        <p>Estilo descapotable para disfrutar al máximo de la carretera y el buen clima.</p>
+      </div>
+      <div class="tipo" data-carroceria="suv" style="cursor:pointer;">
+        <h3>SUV</h3>
+        <p>Versatilidad y espacio, perfectos para aventuras en carretera o en ciudad.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="columnas">
+      <!-- Columna 1: Logo y nombre -->
+      <div class="columna logo-columna">
+        <img src="Imagenes/IBERIC (2).png" alt="Logo Iberic Cars" class="footer-logo">
+        <h3>Iberic Cars</h3>
+      </div>
+  
+      <!-- Columna 2: Nosotros -->
+      <div class="columna">
+        <h3>Nosotros</h3>
+        <p>Somos un concesionario especializado en la venta de coches de todo tipo: deportivos, familiares, eléctricos y más. Trabajamos con marcas reconocidas como Audi, BMW, Toyota y Volkswagen.</p>
+      </div>
+  
+      <!-- Columna 3: Contacto -->
+      <div class="columna">
+        <h3>Contacto</h3>
+        <p>📞 Teléfono: +34 600 123 456</p>
+        <p>📷 Instagram: <a href="#">@ibericcars</a></p>
+        <p>📘 Facebook: <a href="#">Iberic Cars Oficial</a></p>
+      </div>
+    </div>
+    <!-- Línea inferior de derechos -->
+    <div class="footer-bottom">
+      © 2025 Iberic Cars. Todos los derechos reservados.
+    </div>
+  </footer>  
+   <!-- Chatbot -->
+  <!-- Botón flotante para abrir el chat -->
+  <button id="toggle-chat" class="chat-toggle">💬</button>
+
+  <!-- Ventana del chatbot -->
+  <div class="chatbot" id="chatbot">
+    <div class="chat-header">
+      Chat IBERIC CARS
+      <button id="close-chat" style="float: right; background: none; border: none; color: white; font-size: 16px; cursor: pointer;">❌</button>
+    </div>
+    <div class="chat-body" id="chat-body"></div>
+
+    <div class="quick-buttons" id="quick-buttons">
+      <!-- Menú principal -->
+      <div class="menu" id="menu-principal">
+        <button onclick="mostrarMenu('vehiculos')">🚗 Vehículos</button>
+        <button onclick="mostrarMenu('financiacion')">💳 Financiación</button>
+        <button onclick="mostrarMenu('servicios')">🛠 Servicios</button>
+        <button onclick="mostrarMenu('contacto')">📞 Contacto</button>
+      </div>
+
+      <!-- Submenús ocultos -->
+      <div class="menu submenu" id="menu-vehiculos" style="display: none;">
+        <button onclick="responderRapido('¿Qué SUV tienen?')">🚙 SUV</button>
+        <button onclick="responderRapido('¿Tienen coches eléctricos?')">🔋 Eléctricos</button>
+        <button onclick="responderRapido('¿Tienen deportivos?')">🏎 Deportivos</button>
+        <button onclick="volverMenu()">⬅️ Volver</button>
+      </div>
+
+      <div class="menu submenu" id="menu-financiacion" style="display: none;">
+        <button onclick="responderRapido('¿Qué opciones de financiación ofrecen?')">💶 Opciones</button>
+        <button onclick="responderRapido('¿Puedo financiar sin entrada?')">🙅 Sin entrada</button>
+        <button onclick="responderRapido('¿Cuántos meses puedo financiar?')">📅 Plazos</button>
+        <button onclick="volverMenu()">⬅️ Volver</button>
+      </div>
+
+      <div class="menu submenu" id="menu-servicios" style="display: none;">
+        <button onclick="responderRapido('¿Qué garantía tienen los coches?')">✅ Garantía</button>
+        <button onclick="responderRapido('¿Puedo hacer mantenimiento aquí?')">🔧 Mantenimiento</button>
+        <button onclick="responderRapido('¿Ofrecen seguro?')">🛡 Seguro</button>
+        <button onclick="volverMenu()">⬅️ Volver</button>
+      </div>
+
+      <div class="menu submenu" id="menu-contacto" style="display: none;">
+        <button onclick="responderRapido('¿Dónde están ubicados?')">📍 Dirección</button>
+        <button onclick="responderRapido('¿Cuál es su horario?')">🕘 Horario</button>
+        <button onclick="responderRapido('¿Cómo puedo contactarles?')">📧 Correo / Teléfono</button>
+        <button onclick="volverMenu()">⬅️ Volver</button>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="script.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>
