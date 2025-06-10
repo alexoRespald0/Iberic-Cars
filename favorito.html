@@ -6,6 +6,7 @@
   <title>Mis Favoritos - Iberic Cars</title>
   <link rel="stylesheet" href="favorito.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+   <link rel="icon" type="image/png" href="Imagenes/IBERIC (2).png">
 </head>
 <body>
   <!-- HEADER -->
@@ -21,8 +22,14 @@
         <li><a href="index.html">Inicio</a></li>
         <li><a href="buscar.html">Buscar</a></li>
         <li><a href="favorito.html">Favoritos</a></li>
-        <li><a href="Contacto/contacto.html">Contacto</a></li>
-        <li><a href="login.html"><button class="login">Acceder</button></a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+       
+      	<li>
+        	<a id="btn-sesion" href="login.html">
+    			<button class="login">Acceder</button>
+  			</a>
+        </li>
+        
         <li><button class="buy">Comprar</button></li>
         </ul>
     </nav>
@@ -79,6 +86,7 @@
     </div>
     </footer>
 
-
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

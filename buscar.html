@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Buscar - Iberic Cars</title>
   <link rel="stylesheet" href="buscar.css" />
+     <link rel="icon" type="image/png" href="Imagenes/IBERIC (2).png">
 </head>
 <body>
   <!-- Header -->
@@ -20,8 +21,14 @@
         <li><a href="index.html">Inicio</a></li>
         <li><a href="buscar.html">Buscar</a></li>
         <li><a href="favorito.html">Favoritos</a></li>
-        <li><a href="Contacto/contacto.html">Contacto</a></li>
-        <li><a href="login.html"><button class="login">Acceder</button></a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+       
+      	<li>
+        	<a id="btn-sesion" href="login.html">
+    			<button class="login">Acceder</button>
+  			</a>
+        </li>
+        
         <li><button class="buy">Comprar</button></li>
       </ul>
     </nav>
@@ -125,7 +132,10 @@
   </footer>  
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="supabaseClient.js"></script>
   <script src="script_buscar.js"></script>
+  <script src="script.js"></script>
+  
   <script>
   const rango = document.getElementById("precio");
   const etiqueta = document.querySelector(".precio-valor");

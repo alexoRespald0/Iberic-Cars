@@ -1,7 +1,24 @@
-// Supabase config
-const supabaseUrl = "https://yhcivepnywbvskalfqfd.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InloY2l2ZXBueXdidnNrYWxmcWZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcwODA5ODgsImV4cCI6MjA2MjY1Njk4OH0.Nl2_D3j5MHTuGnIaelVrREqLqQSPE-Z8ciVnaJGVa-w";
-const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+document.addEventListener("DOMContentLoaded", async () => {
+   const btnSesion = document.getElementById('btn-sesion');
+   const loginButton = btnSesion.querySelector('button');
+
+   const { data, error } = await supabaseClient.auth.getUser();
+
+   if (data.user) {
+     // Si hay un usuario logueado
+     loginButton.textContent = 'Cerrar sesión';
+     btnSesion.removeAttribute('href'); // Evita que redirija
+     btnSesion.addEventListener('click', async () => {
+       await supabaseClient.auth.signOut();
+       window.location.reload();
+     });
+   } else {
+     // Si no hay sesión
+     loginButton.textContent = 'Acceder';
+     btnSesion.setAttribute('href', 'login.html');
+   }
+ });
 
 document.addEventListener("DOMContentLoaded", async () => {
   const marcaSelect = document.getElementById("marca");
