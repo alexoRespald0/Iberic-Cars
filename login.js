@@ -21,7 +21,7 @@ loginForm.addEventListener('submit', async (e) => {
   }
 
   // ✅ Verificar si el usuario existe usando la función RPC
-  const { data: exists, error: userError } = await supabase.rpc('user_exists', {
+  const { data: exists, error: userError } = await supabaseClient.rpc('user_exists', {
     email_input: email
   });
 
@@ -39,7 +39,7 @@ loginForm.addEventListener('submit', async (e) => {
   }
 
   // 🔐 Si existe, intentar iniciar sesión
-  const { error: loginError } = await supabase.auth.signInWithPassword({
+  const { error: loginError } = await supabaseClient.auth.signInWithPassword({
     email,
     password,
   });

@@ -1,5 +1,4 @@
 
-
 window.addEventListener("DOMContentLoaded", async () => {
     // Si es una recarga (F5), reseteamos el formulario y limpiamos la URL
   if (performance.navigation.type === 1) {

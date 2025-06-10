@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 1. Verificar que el usuario no exista en la tabla
-  const { data: existingUser, error: userError } = await supabase
+  const { data: existingUser, error: userError } = await supabaseClient
     .from('usuario')
     .select('usuario')
     .eq('usuario', usuario)
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 2. Intentar registrar con email en Auth
-  const { data, error: signupError } = await supabase.auth.signUp({
+  const { data, error: signupError } = await supabaseClient.auth.signUp({
     email,
     password
   });
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 3. Insertar datos en tabla usuario
-  const { error: insertError } = await supabase.from('usuario').insert([{
+  const { error: insertError } = await supabaseClient.from('usuario').insert([{
     usuario: usuario,
     email: email,
     password: password // Idealmente cifrar antes
