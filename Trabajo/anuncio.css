@@ -1,117 +1,150 @@
- 
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #ececec;
-      margin: 0;
-      padding: 2rem;
-    }
+/* ====== Estilos generales para anuncio ====== */
 
-    .anuncio-coche {
-      max-width: 1200px;
-      margin: auto;
-      background-color: #f9f9f9;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      padding: 2rem;
-    }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  background-image: url('Imagenes/IBERIC (2).png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: 40%;
+  color: #333;
+  min-height: 150vh;
+}
 
-    .galeria-principal {
-      width: 700px;
-      height: 410px;
-      object-fit: cover;
-      border-radius: 0;
-      margin-bottom: 1rem;
-      display: block;
-      margin-left: 0;
-      margin-right: auto;
-    }
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: -1;
+}
 
-    .miniaturas {
-      display: flex;
-      justify-content: flex-start;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }
+/* ====== Contenedor anuncio ====== */
 
-    .miniaturas img {
-      width: 100px;
-      height: 75px;
-      object-fit: cover;
-      border-radius: 0;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
+.anuncio-coche {
+  max-width: 1200px;
+  margin: 2rem auto;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
 
-    .miniaturas img:hover {
-      transform: scale(1.05);
-    }
+/* ====== Galería de imágenes ====== */
 
-    .detalles-coche h1 {
-      font-size: 2rem;
-      color: #333;
-      margin-bottom: 1rem;
-    }
+.galeria-principal {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0;
+  margin-bottom: 1rem;
+  display: block;
+  margin-left: 0;
+  margin-right: auto;
+}
 
-    .detalles-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      font-size: 1rem;
-      margin-top: 1rem;
-    }
+.miniaturas {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
 
-    .detalles-item {
-      background-color: #fff;
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid #ccc;
-      display: flex;
-      flex-direction: column;
-    }
+.miniaturas img {
+  width: 100px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 0;
+  cursor: pointer;
+  transition: transform 0.2s;
+  flex: 0 0 auto;
+}
 
-    .detalles-item strong {
-      font-weight: bold;
-      margin-bottom: 0.25rem;
-    }
+.miniaturas img:hover {
+  transform: scale(1.05);
+}
 
-    .extras ul {
-      list-style-type: disc;
-      padding-left: 1.5rem;
-    }
+/* ====== Detalles coche ====== */
 
-    .cta {
-      text-align: center;
-      margin-top: 2rem;
-    }
+.detalles-coche h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
 
-    .cta button {
-      padding: 1rem 2rem;
-      background-color: #0074D9;
-      color: white;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
+.detalles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
 
-    .cta button:hover {
-      background-color: #000000;
-    }
-    
-    /* Header */
+.detalles-item {
+  background-color: #fff;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+}
+
+.detalles-item strong {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.extras ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+/* ====== Botón CTA ====== */
+
+.cta {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.cta button {
+  padding: 1rem 2rem;
+  background-color: #0074D9;
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cta button:hover {
+  background-color: #000000;
+}
+
+/* ====== HEADER (ajustado como buscar.css) ====== */
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: white;
   position: sticky;
-  top: 0; /* Asegura que se quede en la parte superior */
-  z-index: 1000; /* Asegura que el header quede por encima de otros elementos */
+  top: 0;
+  z-index: 1000;
   padding: 1rem 2rem;
+  width: 100%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
-/* Asegurarte de que el fondo del header no se vea extraño al hacer scroll */
 header.sticky {
   background-color: rgba(255, 255, 255, 0.95);
 }
@@ -178,13 +211,16 @@ nav a {
   color: white;
 }
 
-/* Footer */
+/* ====== FOOTER (ajustado como buscar.css) ====== */
+
 footer {
   background: #333;
   color: white;
   padding: 2rem;
   margin-top: 2rem;
   border-top: 1px solid #444;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 footer .columnas {

@@ -19,9 +19,9 @@
       <ul>
         <li><a href="index.html">Inicio</a></li>
         <li><a href="buscar.html">Buscar</a></li>
-        <li><a href="favorito.html">Favoritos</a></li>
         <li><a href="Contacto/contacto.html">Contacto</a></li>
-        <li><a href="login.html"><button class="login">Acceder</button></a> </li>
+        <li id="nav-favoritos" style="display: none;"><a href="favorito.html">Favoritos</a></li>
+        <li><a id="btn-sesion" href="login.html"><button class="login">Acceder</button></a></li>
         <li><button class="buy">Comprar</button></li>
       </ul>
     </nav>
@@ -52,44 +52,11 @@
   <!-- Coches destacados -->
   <section class="destacados">
     <h2>Nuestros mejores coches, para los que buscan lo mejor.</h2>
-    <div class="coches">
-        <div class="coche">
-            <img src="Imagenes/cupra.jpg" alt="Cupra León" class="imagen">
-            <p>Cupra León 33.800€</p>
-            <p>2.0 TSI, 300 CV, año 2023</p>
-            <a href="Coches/Coche1.html" class="boton-ver-mas">Ver Más</a>
-        </div>
-        <div class="coche">
-            <img src="Imagenes/audi.jpg" alt="Coche 2" class="imagen">
-            <p>Audi A3 S-Line 27.500€</p>
-            <p>2.0 TDI, 150 CV, año 2022</p>
-            <a href="detalle-cupra.html" class="boton-ver-mas">Ver Más</a>
-        </div>
-        <div class="coche">
-            <img src="Imagenes/Volkswagen Golf.jpg" alt="Coche 3" class="imagen">
-            <p>Volkswagen Golf 24.300€</p>
-            <p>1.5 eTSI, 130 CV, año 2022</p>
-            <a href="detalle-cupra.html" class="boton-ver-mas">Ver Más</a>
-        </div>
-        <div class="coche">
-            <img src="Imagenes/bmw.jpg" alt="Coche 4" class="imagen">
-            <p>BMW Serie 1 29.950€</p>
-            <p>118d, 150 CV, año 2021</p>
-            <a href="detalle-cupra.html" class="boton-ver-mas">Ver Más</a>
-        </div>
-        <div class="coche">
-            <img src="Imagenes/toyota.jpg" alt="Toyota Corolla" class="imagen">
-            <p>Toyota Corolla Hybrid 24.200€</p>
-            <p>1.8 Hybrid, 122 CV, año 2022</p>
-            <a href="detalle-cupra.html" class="boton-ver-mas">Ver Más</a>
-        </div>
-        <div class="coche">
-            <img src="Imagenes/mercedes.jpg" alt="Mercedes CLA" class="imagen">
-            <p>Mercedes CLA 35.600€</p>
-            <p>CLA 200, 163 CV, año 2022</p>
-            <a href="detalle-cupra.html" class="boton-ver-mas">Ver Más</a>
-        </div>
+    <div class="coches" id="cochesDestacados">
+      <!-- Aquí se inyectarán los coches desde JS -->
+    </div>
   </section>
+
 
  <!-- Categorías -->
   <section class="categorias">
@@ -103,7 +70,7 @@
         <h3>Compacto</h3>
         <p>Ágil y eficiente para moverte fácilmente por la ciudad sin renunciar al estilo.</p>
       </div>
-      <div class="tipo" data-carroceria="coupe" style="cursor:pointer;">
+      <div class="tipo" data-carroceria="coupé" style="cursor:pointer;">
         <h3>Coupé</h3>
         <p>Diseño deportivo y prestaciones potentes para los que disfrutan al volante.</p>
       </div>

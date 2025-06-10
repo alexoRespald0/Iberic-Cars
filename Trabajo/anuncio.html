@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Anuncio de Coche</title>
-<link rel="stylesheet" href="anuncio.css" />
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <link rel="stylesheet" href="anuncio.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
-<header>
+<body>
+
+  <header>
     <div class="logo">
       <a href="index.html">
         <img src="Imagenes/IBERIC (2).png" alt="Logo de la empresa" />
@@ -18,126 +20,63 @@
       <ul>
         <li><a href="index.html">Inicio</a></li>
         <li><a href="buscar.html">Buscar</a></li>
-        <li><a href="favorito.html">Favoritos</a></li>
+        <li id="nav-favoritos" style="display: none;"><a href="favorito.html">Favoritos</a></li>
         <li><a href="Contacto/contacto.html">Contacto</a></li>
-        <li><a href="login.html"><button class="login">Acceder</button></a> </li>
+        <li><a id="btn-sesion" href="login.html"><button class="login">Acceder</button></a></li>
         <li><button class="buy">Comprar</button></li>
       </ul>
     </nav>
   </header>
 
-
-
-<body>
   <div class="anuncio-coche">
 
-   
- <!-- Imagen principal -->
-	  <img id="imagen-principal" class="galeria-principal" src="" alt="Vista principal del coche">
+    <!-- Imagen principal -->
+    <img id="imagen-principal" class="galeria-principal" src="" alt="Vista principal del coche" />
+
     <!-- Miniaturas -->
     <div class="miniaturas">
-      <img src="" alt="Vista 1" onclick="cambiarImagenPrincipal(this.src)">
-      <img src="" alt="Vista 2" onclick="cambiarImagenPrincipal(this.src)">
-      <img src="" alt="Vista 3" onclick="cambiarImagenPrincipal(this.src)">
-      <img src="" alt="Vista 4" onclick="cambiarImagenPrincipal(this.src)">
-      <img src="" alt="Vista 5" onclick="cambiarImagenPrincipal(this.src)">
+      <img src="" alt="Vista 1" onclick="cambiarImagenPrincipal(this.src)" />
+      <img src="" alt="Vista 2" onclick="cambiarImagenPrincipal(this.src)" />
+      <img src="" alt="Vista 3" onclick="cambiarImagenPrincipal(this.src)" />
+      <img src="" alt="Vista 4" onclick="cambiarImagenPrincipal(this.src)" />
+      <img src="" alt="Vista 5" onclick="cambiarImagenPrincipal(this.src)" />
     </div>
-  <div class="detalles-coche">
-  <h1></h1>
-  <div class="detalles-grid">
-    <div class="detalles-item"></div>
-    <div class="detalles-item"></div>
-    <div class="detalles-item"></div>
-    <div class="detalles-item"></div>
-    <div class="detalles-item"></div>
-    <div class="detalles-item"></div>
-    <div class="detalles-item"></div>
-  
-  </div>
-</div>
 
+    <div class="detalles-coche">
+      <h1></h1>
+      <div class="detalles-grid">
+        <div class="detalles-item"></div>
+        <div class="detalles-item"></div>
+        <div class="detalles-item"></div>
+        <div class="detalles-item"></div>
+        <div class="detalles-item"></div>
+        <div class="detalles-item"></div>
+        <div class="detalles-item"></div>
+      </div>
+    </div>
 
     <div class="cta">
       <button onclick="alert('Formulario de contacto no implementado')">Añade este coche al carro</button>
     </div>
 
   </div>
-</body>
-<script>
-  const supabaseUrl = 'https://yhcivepnywbvskalfqfd.supabase.co';
-  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InloY2l2ZXBueXdidnNrYWxmcWZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcwODA5ODgsImV4cCI6MjA2MjY1Njk4OH0.Nl2_D3j5MHTuGnIaelVrREqLqQSPE-Z8ciVnaJGVa-w';
-  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-  function cambiarImagenPrincipal(src) {
-    const img = document.getElementById('imagen-principal');
-    img.src = src;
-  }
-
-  async function cargarCochePorID(id) {
-    const { data, error } = await supabase
-      .from('coches')
-      .select('*')
-      .eq('id_coche', id)
-      .single();
-
-    if (error) {
-      console.error('Error al cargar datos:', error);
-      return;
-    }
-
-    // Imagen principal
-    document.getElementById('imagen-principal').src = data.imagenprincipal || 'Imagenes/default-car.png';
-
-    // Miniaturas (hasta 5 imágenes)
-    const miniaturas = document.querySelectorAll('.miniaturas img');
-    const imagenes = [data.foto1, data.foto2, data.foto3, data.foto4, data.imagenprincipal];
-    miniaturas.forEach((img, index) => {
-      img.src = imagenes[index] || 'Imagenes/default-car.png';
-      img.onclick = () => cambiarImagenPrincipal(img.src);
-    });
-
-    // Título: marca + modelo
-    document.querySelector('.detalles-coche h1').textContent = `${data.marca} ${data.modelo}`;
-
-    // Detalles
-    const detalles = document.querySelectorAll('.detalles-item');
-    detalles[0].innerHTML = `<strong>Año</strong> ${data.año}`;
-    detalles[1].innerHTML = `<strong>Combustible</strong> ${data.combustible}`;
-    detalles[2].innerHTML = `<strong>Transmisión</strong> ${data.transmision}`;
-    detalles[3].innerHTML = `<strong>Puertas</strong> ${data.puertas}`;
-    detalles[4].innerHTML = `<strong>Carrocería</strong> ${data.carroceria}`;
-    detalles[5].innerHTML = `<strong>Color</strong> ${data.color}`;
-    detalles[6].innerHTML = `<strong>Precio</strong> ${data.precio} €`;
-    detalles[7].innerHTML = `<strong>ID</strong> ${data.id}`;
-  }
-
-  // Esta parte ya tienes bien implementada, solo mantenla así para que cargue el coche al abrir anuncio.html?id=xxx
-  window.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const idCoche = params.get('id_coche');
-    if (idCoche) {
-      cargarCochePorID(idCoche);
-    } else {
-      console.warn("No se proporcionó un ID de coche en la URL.");
-      // Aquí podrías mostrar un mensaje o redirigir a otra página
-    }
-  });
-</script>
-<!-- Footer -->
   <footer>
     <div class="columnas">
       <!-- Columna 1: Logo y nombre -->
       <div class="columna logo-columna">
-        <img src="Imagenes/IBERIC (2).png" alt="Logo Iberic Cars" class="footer-logo">
+        <img src="Imagenes/IBERIC (2).png" alt="Logo Iberic Cars" class="footer-logo" />
         <h3>Iberic Cars</h3>
       </div>
-  
+
       <!-- Columna 2: Nosotros -->
       <div class="columna">
         <h3>Nosotros</h3>
-        <p>Somos un concesionario especializado en la venta de coches de todo tipo: deportivos, familiares, eléctricos y más. Trabajamos con marcas reconocidas como Audi, BMW, Toyota y Volkswagen.</p>
+        <p>
+          Somos un concesionario especializado en la venta de coches de todo tipo: deportivos, familiares, eléctricos y más. Trabajamos con marcas reconocidas como Audi, BMW, Toyota y Volkswagen.
+        </p>
       </div>
-  
+
       <!-- Columna 3: Contacto -->
       <div class="columna">
         <h3>Contacto</h3>
@@ -147,10 +86,62 @@
       </div>
     </div>
     <!-- Línea inferior de derechos -->
-    <div class="footer-bottom">
-      © 2025 Iberic Cars. Todos los derechos reservados.
-    </div>
-  </footer>  
+    <div class="footer-bottom">© 2025 Iberic Cars. Todos los derechos reservados.</div>
+  </footer>
+
+  <script>
+    const supabaseUrl = 'https://yhcivepnywbvskalfqfd.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InloY2l2ZXBueXdidnNrYWxmcWZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcwODA5ODgsImV4cCI6MjA2MjY1Njk4OH0.Nl2_D3j5MHTuGnIaelVrREqLqQSPE-Z8ciVnaJGVa-w';
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+    function cambiarImagenPrincipal(src) {
+      const img = document.getElementById('imagen-principal');
+      img.src = src;
+    }
+
+    async function cargarCochePorID(id) {
+      const { data, error } = await supabase.from('coches').select('*').eq('id_coche', id).single();
+
+      if (error) {
+        console.error('Error al cargar datos:', error);
+        return;
+      }
+
+      // Imagen principal
+      document.getElementById('imagen-principal').src = data.imagenprincipal || 'Imagenes/default-car.png';
+
+      // Miniaturas (hasta 5 imágenes)
+      const miniaturas = document.querySelectorAll('.miniaturas img');
+      const imagenes = [data.foto1, data.foto2, data.foto3, data.foto4, data.imagenprincipal];
+      miniaturas.forEach((img, index) => {
+        img.src = imagenes[index] || 'Imagenes/default-car.png';
+        img.onclick = () => cambiarImagenPrincipal(img.src);
+      });
+
+      // Título: marca + modelo
+      document.querySelector('.detalles-coche h1').textContent = `${data.marca} ${data.modelo}`;
+
+      // Detalles
+      const detalles = document.querySelectorAll('.detalles-item');
+      detalles[0].innerHTML = `<strong>Año</strong> ${data.año}`;
+      detalles[1].innerHTML = `<strong>Combustible</strong> ${data.combustible}`;
+      detalles[2].innerHTML = `<strong>Transmisión</strong> ${data.transmision}`;
+      detalles[3].innerHTML = `<strong>Puertas</strong> ${data.puertas}`;
+      detalles[4].innerHTML = `<strong>Carrocería</strong> ${data.carroceria}`;
+      detalles[5].innerHTML = `<strong>Color</strong> ${data.color}`;
+      detalles[6].innerHTML = `<strong>Precio</strong> ${data.precio} €`;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const idCoche = params.get('id');
+      if (idCoche) {
+        cargarCochePorID(idCoche);
+      } else {
+        console.warn('No se proporcionó un ID de coche en la URL.');
+      }
+    });
+  </script>
+
+</body>
 </html>
-
-

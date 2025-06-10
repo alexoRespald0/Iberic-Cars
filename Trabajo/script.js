@@ -4,6 +4,70 @@ const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+  async function cargarCochesDestacados() {
+  const contenedor = document.getElementById('cochesDestacados');
+  if (!contenedor) return;
+
+  const cochesSeleccionados = [15, 20, 71, 22, 66, 73];
+
+  const { data: coches, error } = await supabaseClient
+  .from('coches')
+  .select('id_coche, marca, modelo, precio, año, imagenprincipal')
+  .in('id_coche', cochesSeleccionados);  // Aquí filtramos solo esos IDs
+
+
+  if (error) {
+    console.error('Error al cargar coches destacados:', error);
+    return;
+  }
+
+  contenedor.innerHTML = ""; // Limpiar contenido actual
+
+  coches.forEach(coche => {
+    const div = document.createElement('div');
+    div.className = 'coche';
+
+    div.innerHTML = `
+      <img src="${coche.imagenprincipal}" alt="${coche.marca} ${coche.modelo}" class="imagen">
+      <p>${coche.marca} ${coche.modelo} ${parseFloat(coche.precio).toLocaleString('es-ES')}€</p>
+      <p>año ${coche.año}</p>
+      <a href="anuncio.html?id=${coche.id_coche}" class="boton-ver-mas">Ver Más</a>
+    `;
+
+    contenedor.appendChild(div);
+  });
+}
+
+cargarCochesDestacados();
+
+
+  const btnSesion = document.getElementById('btn-sesion');
+	  const loginButton = btnSesion.querySelector('button');
+
+	  const { data, error } = await supabaseClient.auth.getUser();
+
+	  if (data.user) {
+	    // Si hay un usuario logueado
+	    loginButton.textContent = 'Cerrar sesión';
+	    btnSesion.removeAttribute('href'); // Evita que redirija
+	    btnSesion.addEventListener('click', async () => {
+	      await supabaseClient.auth.signOut();
+	      window.location.reload();
+	    });
+
+      const navFavoritos = document.getElementById('nav-favoritos');
+      if (navFavoritos) {
+      navFavoritos.style.display = 'inline-block';
+      }
+
+
+	  } else {
+	    // Si no hay sesión
+	    loginButton.textContent = 'Acceder';
+	    btnSesion.setAttribute('href', 'login.html');
+	  };
+
   const marcaSelect = document.getElementById("marca");
   const modeloSelect = document.getElementById("modelo");
   const añoSelect = document.querySelector("select[name='año']");

@@ -1,10 +1,9 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Reemplaza con los valores de tu proyecto Supabase
-const supabaseUrl = 'https://yhcivepnywbvskalfqfd.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InloY2l2ZXBueXdidnNrYWxmcWZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcwODA5ODgsImV4cCI6MjA2MjY1Njk4OH0.Nl2_D3j5MHTuGnIaelVrREqLqQSPE-Z8ciVnaJGVa-w'; // tu clave pública real
+const supabaseUrl = "https://yhcivepnywbvskalfqfd.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InloY2l2ZXBueXdidnNrYWxmcWZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcwODA5ODgsImV4cCI6MjA2MjY1Njk4OH0.Nl2_D3j5MHTuGnIaelVrREqLqQSPE-Z8ciVnaJGVa-w";
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
-// Aquí usamos la variable global "window.supabase"
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+document.addEventListener('DOMContentLoaded', () => {
+
 
   // Elementos del DOM
   const usuarioInput = document.getElementById('usuario');
@@ -27,7 +26,7 @@ const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
   }
 
   // 1. Verificar que el usuario no exista en la tabla
-  const { data: existingUser, error: userError } = await supabase
+  const { data: existingUser, error: userError } = await supabaseClient
     .from('usuario')
     .select('usuario')
     .eq('usuario', usuario)
@@ -50,7 +49,7 @@ const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
   }
 
   // 2. Intentar registrar con email en Auth
-  const { data, error: signupError } = await supabase.auth.signUp({
+  const { data, error: signupError } = await supabaseClient.auth.signUp({
     email,
     password
   });
@@ -66,7 +65,7 @@ const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
   }
 
   // 3. Insertar datos en tabla usuario
-  const { error: insertError } = await supabase.from('usuario').insert([{
+  const { error: insertError } = await supabaseClient.from('usuario').insert([{
     usuario: usuario,
     email: email,
     password: password // Idealmente cifrar antes
