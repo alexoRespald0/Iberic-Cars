@@ -6,6 +6,8 @@
 
 // Añade un listener para cuando se envíe el formulario con id "contact-form"
 document.getElementById("contact-form").addEventListener("submit", function(e) {
+
+  
   e.preventDefault(); // Previene que el formulario recargue la página al enviarse
 
  
