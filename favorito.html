@@ -6,87 +6,66 @@
   <title>Mis Favoritos - Iberic Cars</title>
   <link rel="stylesheet" href="favorito.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-   <link rel="icon" type="image/png" href="Imagenes/IBERIC (2).png">
+  <link rel="icon" type="image/png" href="Imagenes/IBERIC (2).png">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="favorito.js"></script>
 </head>
 <body>
   <!-- HEADER -->
-    <header>
+  <header>
     <div class="logo">
-        <a href="index.html">
+      <a href="index.html">
         <img src="Imagenes/IBERIC (2).png" alt="Logo de la empresa" />
-        </a>
+      </a>
     </div>
     <h1 class="titulo-header">Iberic Cars</h1>
     <nav>
-        <ul>
+      <ul>
         <li><a href="index.html">Inicio</a></li>
         <li><a href="buscar.html">Buscar</a></li>
         <li><a href="favorito.html">Favoritos</a></li>
         <li><a href="Contacto.html">Contacto</a></li>
-       
-      	<li>
-        	<a id="btn-sesion" href="login.html">
-    			<button class="login">Acceder</button>
-  			</a>
+        <li>
+          <a id="btn-sesion" href="login.html">
+            <button class="login">Acceder</button>
+          </a>
         </li>
-        
         <li><button class="buy">Comprar</button></li>
-        </ul>
+      </ul>
     </nav>
-    </header>
-    <main class="main-favoritos">
+  </header>
+  <main class="main-favoritos">
     <section class="favoritos-wrapper">
-        <h2>🚗 Mis Favoritos</h2>
-
-        <div class="lista-favoritos">
-        <!-- Tarjeta de coche favorito -->
-        <article class="favorito-card">
-            <img src="Imagenes/audi.jpg" alt="Audi A4 2020" />
-            <div class="info">
-            <h3>Audi A4 2.0 TDI</h3>
-            <p>2020 · Diésel · 45.000 km</p>
-            <p class="precio">25.900 €</p>
-            <div class="acciones">
-                <button class="btn-detalles">Ver más</button>
-                <button class="btn-eliminar">Eliminar</button>
-            </div>
-            </div>
-        </article>
-
-        <!-- Más tarjetas aquí dinámicamente o duplicadas -->
-        </div>
-
-        <!-- Si no hay favoritos -->
-        <div class="vacio">
+      <h2>🚗 Mis Favoritos</h2>
+      <div class="lista-favoritos"></div>
+      <!-- Si no hay favoritos -->
+      <div class="vacio" style="display:none;">
         <p>No tienes coches en favoritos todavía.</p>
-        </div>
+      </div>
+      <div class="error" style="display:none; color: red;"></div>
     </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
+  </main>
+  <!-- FOOTER -->
+  <footer>
     <div class="columnas">
-        <div class="columna logo-columna">
+      <div class="columna logo-columna">
         <img src="Imagenes/IBERIC (2).png" alt="Logo Iberic Cars" class="footer-logo">
         <h3>Iberic Cars</h3>
-        </div>
-        <div class="columna">
+      </div>
+      <div class="columna">
         <h3>Nosotros</h3>
         <p>Somos un concesionario especializado en la venta de coches de todo tipo: deportivos, familiares, eléctricos y más. Trabajamos con marcas reconocidas como Audi, BMW, Toyota y Volkswagen.</p>
-        </div>
-        <div class="columna">
+      </div>
+      <div class="columna">
         <h3>Contacto</h3>
         <p>📞 Teléfono: +34 600 123 456</p>
         <p>📷 Instagram: <a href="#">@ibericcars</a></p>
         <p>📘 Facebook: <a href="#">Iberic Cars Oficial</a></p>
-        </div>
+      </div>
     </div>
     <div class="footer-bottom">
-        © 2025 Iberic Cars. Todos los derechos reservados.
+      © 2025 Iberic Cars. Todos los derechos reservados.
     </div>
-    </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-  <script src="script.js"></script>
+  </footer>
 </body>
 </html>
