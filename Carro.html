@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carrito - Iberic Cars</title>
+  <link rel="stylesheet" href="carro.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="icon" type="image/png" href="Imagenes/IBERIC (2).png">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="carro.js"></script>
+  <script src="pedido.js"></script>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="Imagenes/IBERIC (2).png" alt="Logo de la empresa" />
+      </a>
+    </div>
+    <h1 class="titulo-header">Iberic Cars</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="buscar.html">Buscar</a></li>
+        <li><a href="Contacto.html">Contacto</a></li>
+        <li><a href="favorito.html">Favoritos</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="main-carro">
+    <section class="carro-wrapper">
+      <div class="lista-carro"></div>
+      <!-- Si no hay en carrito -->
+      <div class="vacio" style="display:none;">
+        <p>No tienes coches en el carrito todavía.</p>
+      </div>
+      <div class="error" style="display:none; color: red;"></div>
+    </section>
+    
+    <!-- Formulario de pedido -->
+    <section class="pedido-wrapper">
+      <h2>Realizar Pedido</h2>
+      <form id="pedido-form">
+        <div class="campo">
+          <label for="nombre">Nombre completo:</label>
+          <input type="text" id="nombre" name="nombre" required autocomplete="name"/>
+        </div>
+        <div class="campo">
+          <label for="direccion">Dirección:</label>
+          <input type="text" id="direccion" name="direccion" required autocomplete="street-address"/>
+        </div>
+        <div class="campo">
+          <label for="cp">Código Postal:</label>
+          <input type="text" id="cp" name="cp" required pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code"/>
+        </div>
+        <div class="campo">
+          <label for="iban">IBAN de la cuenta:</label>
+          <input type="text" id="iban" name="iban" maxlength="24" autocomplete="off"/>
+        </div>
+        <button type="submit" id="tramitar-pedido">Tramitar Pedido</button>
+      </form>
+      <div id="pedido-mensaje" style="margin-top:1em;"></div>
+    </section>
+  </main>
+  <!-- FOOTER -->
+  <footer>
+    <div class="columnas">
+      <div class="columna logo-columna">
+        <img src="Imagenes/IBERIC (2).png" alt="Logo Iberic Cars" class="footer-logo">
+        <h3>Iberic Cars</h3>
+      </div>
+      <div class="columna">
+        <h3>Nosotros</h3>
+        <p>Somos un concesionario especializado en la venta de coches de todo tipo: deportivos, familiares, eléctricos y más. Trabajamos con marcas reconocidas como Audi, BMW, Toyota y Volkswagen.</p>
+      </div>
+      <div class="columna">
+        <h3>Contacto</h3>
+        <p>📞 Teléfono: +34 600 123 456</p>
+        <p>📷 Instagram: <a href="#">@ibericcars</a></p>
+        <p>📘 Facebook: <a href="#">Iberic Cars Oficial</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Iberic Cars. Todos los derechos reservados.
+    </div>
+  </footer>
+</body>
+</html>

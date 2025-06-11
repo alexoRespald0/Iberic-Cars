@@ -82,6 +82,39 @@ async function anadirAFavorito() {
     document.getElementById('favorito-msg').style.display = 'none';
   }, 2000);
 }
+
+async function anadirAcarro() {
+  // idCocheActual ya es global
+  if (!idCocheActual) {
+    alert("¡El coche no está cargado aún!");
+    return;
+  }
+  const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+  if (!user) {
+    alert("Debes iniciar sesión para añadir al carro.");
+    return;
+  }
+  const userId = user.id;
+  console.log("Insertando coche al carro: usuario", userId, "coche", idCocheActual);
+
+  const { error } = await supabaseClient
+    .from('carro')
+    .insert([{ id_usuario_uuid: userId, id_coche: idCocheActual }]);
+
+  if (error) {
+    if (error.code === "23505") {
+      alert("¡Este coche ya está en tu carrito!");
+    } else {
+      alert('Error al guardar en el carro: ' + error.message);
+    }
+    return;
+  }
+  document.getElementById('carro-msg').style.display = 'inline';
+  setTimeout(() => {
+    document.getElementById('carro-msg').style.display = 'none';
+  }, 2000);
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   const idCoche = params.get('id_coche');
