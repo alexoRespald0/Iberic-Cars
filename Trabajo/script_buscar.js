@@ -191,10 +191,6 @@ async function cargarCoches(pagina = 1) {
     const card = document.createElement("div");
     card.className = "coche-card";
     card.innerHTML = `
-      <div class="iconos-acciones">
-        <span class="icono-favorito" title="Añadir a favoritos">❤️</span>
-        <span class="icono-carrito" title="Añadir al carrito">🛒</span>
-      </div>  
       <img src="${coche.imagenprincipal || 'Imagenes/default-car.png'}" alt="${coche.marca} ${coche.modelo}" />
       <div class="coche-info">
         <h3 class="titulo-coche">${coche.marca} ${coche.modelo}</h3>

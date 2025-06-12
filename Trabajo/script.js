@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const contenedor = document.getElementById('cochesDestacados');
   if (!contenedor) return;
 
-  const cochesSeleccionados = [15, 20, 71, 22, 66, 73];
+  const cochesSeleccionados = [15, 20, 71, 22, 66, 26];
 
   const { data: coches, error } = await supabaseClient
   .from('coches')
