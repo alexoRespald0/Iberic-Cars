@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Anuncio de Coche</title>
   <link rel="stylesheet" href="anuncio.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <link rel="icon" type="image/png" href="Imagenes/IBERIC (2).png">
   <script src="Anuncio.js"></script>
 </head>
+<body>
 <header>
     <div class="logo">
       <a href="index.html">
@@ -20,41 +21,48 @@
       <ul>
         <li><a href="index.html">Inicio</a></li>
         <li><a href="buscar.html">Buscar</a></li>
-        <li><a href="favorito.html">Favoritos</a></li>
-        
-        <li><a href="Contacto.html">Contacto</a></li>
+        <li><a href="Contacto/contacto.html">Contacto</a></li>
+        <li id="nav-favoritos" style="display: none;"><a href="favorito.html">Favoritos</a></li>
+        <li><a id="btn-sesion" href="login.html"><button class="login">Acceder</button></a></li>
         <li><a href= "Carro.html" button class="buy">carro</button></a></li>
       </ul>
     </nav>
 </header>
-
-<body>
   <div class="anuncio-coche">
+  <!-- Galería -->
+  <div class="galeria-coche">
+  <div class="galeria-contenedor">
+    <button class="flecha izquierda" onclick="cambiarImagen(-1)">&#10094;</button>
 
-    <!-- Imagen principal -->
-    <img id="imagen-principal" class="galeria-principal" src="" alt="Vista principal del coche">
-    <!-- Miniaturas -->
+    <img id="imagen-principal" class="galeria-principal" src="" alt="Vista principal del coche" />
+
+    <button class="flecha derecha" onclick="cambiarImagen(1)">&#10095;</button>
+    </div>
+
     <div class="miniaturas">
-      <img src="" alt="Vista 1" onclick="cambiarImagenPrincipal(this.src)">
-      <img src="" alt="Vista 2" onclick="cambiarImagenPrincipal(this.src)">
-      <img src="" alt="Vista 3" onclick="cambiarImagenPrincipal(this.src)">
-      <img src="" alt="Vista 4" onclick="cambiarImagenPrincipal(this.src)">
-      <img src="" alt="Vista 5" onclick="cambiarImagenPrincipal(this.src)">
+      <img src="" alt="Vista 1" onclick="cambiarImagenPrincipal(this.src)" />
+      <img src="" alt="Vista 2" onclick="cambiarImagenPrincipal(this.src)" />
+      <img src="" alt="Vista 3" onclick="cambiarImagenPrincipal(this.src)" />
+      <img src="" alt="Vista 4" onclick="cambiarImagenPrincipal(this.src)" />
+      <img src="" alt="Vista 5" onclick="cambiarImagenPrincipal(this.src)" />
     </div>
-    <div class="detalles-coche">
-      <h1></h1>
-      <div class="detalles-grid">
-        <div class="detalles-item"></div>
-        <div class="detalles-item"></div>
-        <div class="detalles-item"></div>
-        <div class="detalles-item"></div>
-        <div class="detalles-item"></div>
-        <div class="detalles-item"></div>
-        <div class="detalles-item"></div>
-      </div>
-    </div>
+  </div>
 
-    <div class="cta">
+  <!-- Detalles -->
+  <div class="detalles-coche">
+    <h1>Nombre del Coche</h1>
+    <div class="detalles-grid">
+      <div class="detalles-item"><strong>Marca:</strong></div>
+      <div class="detalles-item"><strong>Modelo:</strong></div>
+      <div class="detalles-item"><strong>Año:</strong></div>
+      <div class="detalles-item"><strong>Kilómetros:</strong></div>
+      <div class="detalles-item"><strong>Combustible:</strong></div>
+      <div class="detalles-item"><strong>Precio:</strong></div>
+      <div class="detalles-item"><strong>Transmisión:</strong></div>
+    </div>
+  </div>
+
+  <div class="cta">
       <button id="btn-carro" onclick="anadirAcarro()" style="margin-left:10px;">
       Añadir al carro
       </button>
@@ -66,10 +74,6 @@
     </div>
 
   </div>
-   
-   <script src="script.js"></script>
-</body>
-
 <!-- Footer -->
   <footer>
     <div class="columnas">
@@ -97,5 +101,6 @@
     <div class="footer-bottom">
       © 2025 Iberic Cars. Todos los derechos reservados.
     </div>
-  </footer>  
+  </footer> 
+</body>
 </html>
