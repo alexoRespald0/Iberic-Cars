@@ -4,6 +4,35 @@ const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
 window.addEventListener("DOMContentLoaded", async () => {
+  const btnSesion = document.getElementById('btn-sesion');
+  const loginButton = btnSesion.querySelector('button');
+
+  const { data, error } = await supabaseClient.auth.getUser();
+  const favoritosItem = document.getElementById('favoritos-item');
+
+if (data.user) {
+  // Usuario logueado
+  loginButton.textContent = 'Cerrar sesión';
+  btnSesion.removeAttribute('href');
+  btnSesion.addEventListener('click', async () => {
+    await supabaseClient.auth.signOut();
+    window.location.reload();
+  });
+
+  // Mostrar menú de Favoritos
+  if (favoritosItem) {
+    favoritosItem.style.display = 'inline-block';
+  }
+
+} else {
+  // Usuario NO logueado
+  loginButton.textContent = 'Acceder';
+  btnSesion.setAttribute('href', 'login.html');
+  if (favoritosItem) {
+    favoritosItem.style.display = 'none';
+  }
+}
+
     // Si es una recarga (F5), reseteamos el formulario y limpiamos la URL
   if (performance.navigation.type === 1) {
     document.getElementById("filtros").reset();
@@ -183,7 +212,7 @@ async function cargarCoches(pagina = 1) {
 	
 	card.addEventListener("click", () => {
 	  // Redirigir a anuncio.html pasando el id como parámetro en la URL
-	  window.location.href = `anuncio.html?id_coche=${coche.id_coche}`;
+	  window.location.href = `anuncio.html?id=${coche.id_coche}`;
 	});
 	
     contenedor.appendChild(card);
