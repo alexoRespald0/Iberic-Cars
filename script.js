@@ -3,10 +3,43 @@ const supabaseUrl = "https://yhcivepnywbvskalfqfd.supabase.co";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InloY2l2ZXBueXdidnNrYWxmcWZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcwODA5ODgsImV4cCI6MjA2MjY1Njk4OH0.Nl2_D3j5MHTuGnIaelVrREqLqQSPE-Z8ciVnaJGVa-w";
 const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
-
-  
-
 document.addEventListener("DOMContentLoaded", async () => {
+
+  async function cargarCochesDestacados() {
+  const contenedor = document.getElementById('cochesDestacados');
+  if (!contenedor) return;
+
+  const cochesSeleccionados = [15, 20, 71, 22, 66, 26];
+
+  const { data: coches, error } = await supabaseClient
+  .from('coches')
+  .select('id_coche, marca, modelo, precio, año, imagenprincipal')
+  .in('id_coche', cochesSeleccionados);  // Aquí filtramos solo esos IDs
+
+
+  if (error) {
+    console.error('Error al cargar coches destacados:', error);
+    return;
+  }
+
+  contenedor.innerHTML = ""; // Limpiar contenido actual
+
+  coches.forEach(coche => {
+    const div = document.createElement('div');
+    div.className = 'coche';
+
+    div.innerHTML = `
+      <img src="${coche.imagenprincipal}" alt="${coche.marca} ${coche.modelo}" class="imagen">
+      <p>${coche.marca} ${coche.modelo} ${parseFloat(coche.precio).toLocaleString('es-ES')}€</p>
+      <p>año ${coche.año}</p>
+      <a href="anuncio.html?id=${coche.id_coche}" class="boton-ver-mas">Ver Más</a>
+    `;
+
+    contenedor.appendChild(div);
+  });
+}
+
+cargarCochesDestacados();
 	
 	const btnSesion = document.getElementById('btn-sesion');
 	  const loginButton = btnSesion.querySelector('button');
@@ -21,6 +54,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 	      await supabaseClient.auth.signOut();
 	      window.location.reload();
 	    });
+      const navFavoritos = document.getElementById('nav-favoritos');
+      if (navFavoritos) {
+      navFavoritos.style.display = 'inline-block';
+      }
 	  } else {
 	    // Si no hay sesión
 	    loginButton.textContent = 'Acceder';
