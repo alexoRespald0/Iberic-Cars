@@ -85,7 +85,7 @@ cargarCochesDestacados();
     marcaSelect.innerHTML = '<option value="">Marca</option>';
     marcas.forEach(m => {
       const option = document.createElement("option");
-      option.value = m.toLowerCase();
+      option.value = m;
       option.textContent = m;
       marcaSelect.appendChild(option);
     });
@@ -100,7 +100,7 @@ cargarCochesDestacados();
 
     marcaSelect.addEventListener("change", () => {
       const marcaSeleccionada = marcaSelect.value;
-      const modelosFiltrados = data.filter(c => c.marca.toLowerCase() === marcaSeleccionada)
+      const modelosFiltrados = data.filter(c => c.marca.toLowerCase() === marcaSeleccionada.toLowerCase())
                                    .map(c => c.modelo)
                                    .filter(Boolean);
       const modelosUnicos = [...new Set(modelosFiltrados)].sort();
