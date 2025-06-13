@@ -28,6 +28,8 @@
       </ul>
     </nav>
   </header>
+
+  <!-- MAIN -->
   <main class="main-carro">
     <section class="carro-wrapper">
       <div class="lista-carro"></div>
@@ -38,15 +40,14 @@
       <div class="error" style="display:none; color: red;"></div>
     </section>
 
-    <!-- Botón que lleva al checkout de Stripe -->
+    <!-- Botón de pago con PayPal -->
     <section class="pago-wrapper" style="text-align:center;">
-      <button id="btn-pago-stripe" style="font-size:1.2em; padding:1em 2em; margin-top:2em; cursor:pointer;">
-        Pagar con Stripe
-      </button>
+      <div id="paypal-button-container" style="margin-top:2em;"></div>
     </section>
   </main>
+
   <!-- FOOTER -->
- <footer>
+  <footer>
     <div class="columnas">
       <!-- Columna 1: Logo y nombre -->
       <div class="columna logo-columna">
@@ -73,11 +74,50 @@
       © 2025 Iberic Cars. Todos los derechos reservados.
     </div>
   </footer> 
-  <script>
-    // Cuando pulses el botón, te lleva al checkout de Stripe
-    document.getElementById('btn-pago-stripe').onclick = function() {
-      window.location.href = 'checkout.html';
+
+  <!-- PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR"></script>
+<script>
+  // Esperamos un poco para que cargue el carrito y defina totalCarrito
+  function cargarPaypal() {
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        // Si no existe totalCarrito, ponemos 0 para evitar error
+        const total = window.totalCarrito || '0.00';
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: total,
+              currency_code: "EUR"
+            },
+            description: 'Compra en Iberic Cars'
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('Pago completado por ' + details.payer.name.given_name + '!');
+          // Aquí podrías limpiar el carrito o redirigir
+        });
+      },
+      onError: function(err) {
+        console.error('Error en el pago:', err);
+        document.querySelector('.error').textContent = 'Hubo un error con el pago. Inténtalo de nuevo.';
+        document.querySelector('.error').style.display = 'block';
+      }
+    }).render('#paypal-button-container');
+  }
+
+  // Intentamos cargar PayPal varias veces si no existe totalCarrito aún
+  function waitForTotal() {
+    if (window.totalCarrito) {
+      cargarPaypal();
+    } else {
+      setTimeout(waitForTotal, 200);
     }
-  </script>
+  }
+  waitForTotal();
+</script>
+
 </body>
 </html>
