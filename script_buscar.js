@@ -69,7 +69,7 @@ function llenarSelect(id, opciones) {
   select.innerHTML = `<option value="">Selecciona ${id}</option>`;
   opciones.sort().forEach((op) => {
     const option = document.createElement("option");
-    option.value = op.toString().toLowerCase();
+    option.value = op;
     option.textContent = op;
     select.appendChild(option);
   });
