@@ -2,42 +2,28 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
+    // Correcto: responde con JSON
     res.status(405).json({ error: 'Método no permitido' });
     return;
   }
 
-  const { coches, nombre, direccion, cp, iban, userId } = req.body;
+  const { coches, nombre, direccion, cp, userId } = req.body;
 
   if (!coches || coches.length === 0) {
+    // Correcto: responde con JSON
     res.status(400).json({ error: 'No hay coches en el pedido' });
     return;
   }
 
-  const line_items = coches.map(coche => ({
-    price_data: {
-      currency: 'eur',
-      product_data: {
-        name: `${coche.marca} ${coche.modelo} ${coche.año || ''}`,
-      },
-      unit_amount: Math.round(Number(coche.precio) * 100),
-    },
-    quantity: 1,
-  }));
-
   try {
+    // ... código para crear la sesión ...
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items,
-      mode: 'payment',
-      success_url: `${process.env.BASE_URL}/pedido-exito.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.BASE_URL}/pedido-cancelado.html`,
-      metadata: {
-        nombre, direccion, cp, iban, userId,
-        coches: JSON.stringify(coches)
-      }
+      // ...
     });
+    // Correcto: responde con JSON
     res.status(200).json({ url: session.url });
   } catch (err) {
+    // Correcto: responde con JSON
     res.status(500).json({ error: err.message });
   }
 };
