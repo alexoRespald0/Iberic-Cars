@@ -9,7 +9,6 @@
   <link rel="icon" type="image/png" href="Imagenes/IBERIC (2).png">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="Carro.js"></script>
-  <script src="pedido.js"></script>
 </head>
 <body>
   <!-- HEADER -->
@@ -38,40 +37,30 @@
       </div>
       <div class="error" style="display:none; color: red;"></div>
     </section>
-    
-    <!-- Formulario de pedido -->
-    <section class="pedido-wrapper">
-      <h2>Realizar Pedido</h2>
-      <form id="pedido-form">
-        <div class="campo">
-          <label for="nombre">Nombre completo:</label>
-          <input type="text" id="nombre" name="nombre" required autocomplete="name"/>
-        </div>
-        <div class="campo">
-          <label for="direccion">Dirección:</label>
-          <input type="text" id="direccion" name="direccion" required autocomplete="street-address"/>
-        </div>
-        <div class="campo">
-          <label for="cp">Código Postal:</label>
-          <input type="text" id="cp" name="cp" required pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code"/>
-        </div>
-        
-        <button type="submit" id="tramitar-pedido">Tramitar Pedido</button>
-      </form>
-      <div id="pedido-mensaje" style="margin-top:1em;"></div>
+
+    <!-- Botón que lleva al checkout de Stripe -->
+    <section class="pago-wrapper" style="text-align:center;">
+      <button id="btn-pago-stripe" style="font-size:1.2em; padding:1em 2em; margin-top:2em; cursor:pointer;">
+        Pagar con Stripe
+      </button>
     </section>
   </main>
   <!-- FOOTER -->
-  <footer>
+ <footer>
     <div class="columnas">
+      <!-- Columna 1: Logo y nombre -->
       <div class="columna logo-columna">
         <img src="Imagenes/IBERIC (2).png" alt="Logo Iberic Cars" class="footer-logo">
         <h3>Iberic Cars</h3>
       </div>
+  
+      <!-- Columna 2: Nosotros -->
       <div class="columna">
         <h3>Nosotros</h3>
         <p>Somos un concesionario especializado en la venta de coches de todo tipo: deportivos, familiares, eléctricos y más. Trabajamos con marcas reconocidas como Audi, BMW, Toyota y Volkswagen.</p>
       </div>
+  
+      <!-- Columna 3: Contacto -->
       <div class="columna">
         <h3>Contacto</h3>
         <p>📞 Teléfono: +34 600 123 456</p>
@@ -79,10 +68,16 @@
         <p>📘 Facebook: <a href="#">Iberic Cars Oficial</a></p>
       </div>
     </div>
+    <!-- Línea inferior de derechos -->
     <div class="footer-bottom">
       © 2025 Iberic Cars. Todos los derechos reservados.
     </div>
-  </footer>
-  //a ver si va ahora
+  </footer> 
+  <script>
+    // Cuando pulses el botón, te lleva al checkout de Stripe
+    document.getElementById('btn-pago-stripe').onclick = function() {
+      window.location.href = 'checkout.html';
+    }
+  </script>
 </body>
 </html>
