@@ -115,7 +115,7 @@ cargarCochesDestacados();
 
         modelosUnicos.forEach(m => {
           const option = document.createElement("option");
-          option.value = m.toLowerCase().replace(/\s+/g, '-');
+          option.value = m;
           option.textContent = m;
           modeloSelect.appendChild(option);
         });
