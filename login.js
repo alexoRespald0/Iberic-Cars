@@ -72,6 +72,14 @@ olvidastePassword.addEventListener('click', (e) => {
   resetContainer.scrollIntoView({ behavior: 'smooth' }); // opcional, para desplazar hacia el div
 });
 
+const cancelarBtn = document.getElementById('cancelar-btn');
+
+cancelarBtn.addEventListener('click', () => {
+  resetContainer.classList.remove('visible'); // Oculta el formulario
+  resetMensaje.textContent = ''; // Limpia cualquier mensaje
+  resetInput.value = ''; // Limpia el campo de email
+});
+
 resetBtn.addEventListener('click', async () => {
   const email = resetInput.value.trim().toLowerCase();
   resetMensaje.textContent = '';
