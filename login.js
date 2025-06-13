@@ -68,7 +68,8 @@ const resetMensaje = document.getElementById('reset-mensaje');
 
 olvidastePassword.addEventListener('click', (e) => {
   e.preventDefault();
-  resetContainer.style.display = 'block'; // Mostrar formulario de recuperación
+  resetContainer.classList.add('visible'); // ✅ usa clase con animación
+  resetContainer.scrollIntoView({ behavior: 'smooth' }); // opcional, para desplazar hacia el div
 });
 
 resetBtn.addEventListener('click', async () => {
