@@ -59,3 +59,39 @@ loginForm.addEventListener('submit', async (e) => {
     window.location.href = 'index.html';
   }, 3000);
 });
+
+const olvidastePassword = document.getElementById('olvidaste-password');
+const resetContainer = document.getElementById('reset-password-container');
+const resetBtn = document.getElementById('reset-btn');
+const resetInput = document.getElementById('reset-email');
+const resetMensaje = document.getElementById('reset-mensaje');
+
+olvidastePassword.addEventListener('click', (e) => {
+  e.preventDefault();
+  resetContainer.style.display = 'block'; // Mostrar formulario de recuperación
+});
+
+resetBtn.addEventListener('click', async () => {
+  const email = resetInput.value.trim().toLowerCase();
+  resetMensaje.textContent = '';
+
+  if (!email) {
+    resetMensaje.textContent = 'Por favor, introduce tu correo.';
+    resetMensaje.style.color = 'orange';
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+    redirectTo: 'https://iberic-cars.vercel.app/reset-contraseña.html' // 🔁 Cambia esto por tu URL real
+  });
+
+  if (error) {
+    resetMensaje.textContent = '❌ Error: ' + error.message;
+    resetMensaje.style.color = 'red';
+  } else {
+    resetMensaje.textContent = '✅ Se ha enviado un correo para restablecer la contraseña.';
+    resetMensaje.style.color = 'green';
+  }
+});
+
+
