@@ -61,7 +61,19 @@ body {
     background-color: #333;
     transform: scale(1.05);
   }
-  
+
+.login-container .olvido a {
+  color: #000;
+  text-decoration: underline;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.login-container .olvido a:hover {
+  color: #555;
+}
+
+
   .login-container .volver {
     display: block;
     margin-top: 1rem;
