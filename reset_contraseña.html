@@ -61,6 +61,10 @@
       } else {
         mensaje.textContent = '✅ Contraseña cambiada correctamente. Puedes iniciar sesión.';
         mensaje.style.color = 'green';
+
+        setTimeout(() => {
+        window.location.href = 'login.html';
+        }, 2000);
       }
     });
   </script>
