@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cp = document.getElementById('cp').value.trim();
    
 
-    if (!nombre || !direccion || !cp || !iban) {
+    if (!nombre || !direccion || !cp ) {
       mensaje.textContent = 'Por favor rellena todos los campos correctamente.';
       return;
     }
