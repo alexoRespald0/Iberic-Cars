@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          coches, nombre, direccion, cp, iban, userId
+          coches, nombre, direccion, cp,  userId
         })
       });
       const result = await response.json();
