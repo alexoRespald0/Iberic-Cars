@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restablecer Contraseña - Iberic Cars</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="login.css">
+  <link rel="icon" type="image/png" href="Imagenes/IBERIC (2).png">
+</head>
+
+<body>
+  <a href="index.html">
+    <img src="Imagenes/IBERIC (2).png" alt="Logo de la empresa" />
+  </a>
+  <div class="login-container">
+    <h2>Restablecer Contraseña</h2>
+    <form id="reset-form">
+      <input type="password" id="new-password" placeholder="Nueva contraseña" required>
+      <input type="password" id="confirm-password" placeholder="Repite la contraseña" required>
+      <button type="submit">Cambiar contraseña</button>
+    </form>
+    <a class="volver" href="login.html">← Volver al login</a>
+    <p id="mensaje"></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="reset.js"></script>
+</body>
+</html>

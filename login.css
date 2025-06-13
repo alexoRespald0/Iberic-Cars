@@ -61,7 +61,19 @@ body {
     background-color: #333;
     transform: scale(1.05);
   }
-  
+
+.login-container .olvido a {
+  color: #000;
+  text-decoration: underline;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.login-container .olvido a:hover {
+  color: #555;
+}
+
+
   .login-container .volver {
     display: block;
     margin-top: 1rem;
@@ -131,3 +143,67 @@ body {
   align-items: center;
   height: 100%;
 }
+
+/* Oculto por defecto */
+.reset-container {
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Mostrar con animación */
+.reset-container.visible {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reset-container input {
+  width: 100%;
+  padding: 0.6rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.reset-container button {
+  background-color: #000;
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reset-container button:hover {
+  background-color: #333;
+}
+
+#reset-mensaje {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.reset-container #cancelar-btn {
+  background-color: transparent;
+  color: #000;
+  border: 1px solid #ccc;
+  padding: 0.6rem 1rem;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reset-container #cancelar-btn:hover {
+  background-color: #eee;
+}
+

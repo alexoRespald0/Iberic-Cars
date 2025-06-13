@@ -9,7 +9,6 @@
   <link rel="icon" type="image/png" href="Imagenes/IBERIC (2).png">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="Carro.js"></script>
-  <script src="pedido.js"></script>
 </head>
 <body>
   <!-- HEADER -->
@@ -29,6 +28,8 @@
       </ul>
     </nav>
   </header>
+
+  <!-- MAIN -->
   <main class="main-carro">
     <section class="carro-wrapper">
       <div class="lista-carro"></div>
@@ -38,43 +39,29 @@
       </div>
       <div class="error" style="display:none; color: red;"></div>
     </section>
-    
-    <!-- Formulario de pedido -->
-    <section class="pedido-wrapper">
-      <h2>Realizar Pedido</h2>
-      <form id="pedido-form">
-        <div class="campo">
-          <label for="nombre">Nombre completo:</label>
-          <input type="text" id="nombre" name="nombre" required autocomplete="name"/>
-        </div>
-        <div class="campo">
-          <label for="direccion">Dirección:</label>
-          <input type="text" id="direccion" name="direccion" required autocomplete="street-address"/>
-        </div>
-        <div class="campo">
-          <label for="cp">Código Postal:</label>
-          <input type="text" id="cp" name="cp" required pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code"/>
-        </div>
-        <div class="campo">
-          <label for="iban">IBAN de la cuenta:</label>
-          <input type="text" id="iban" name="iban" maxlength="24" autocomplete="off"/>
-        </div>
-        <button type="submit" id="tramitar-pedido">Tramitar Pedido</button>
-      </form>
-      <div id="pedido-mensaje" style="margin-top:1em;"></div>
+
+    <!-- Botón de pago con PayPal -->
+    <section class="pago-wrapper" style="text-align:center;">
+      <div id="paypal-button-container" style="margin-top:2em;"></div>
     </section>
   </main>
+
   <!-- FOOTER -->
   <footer>
     <div class="columnas">
+      <!-- Columna 1: Logo y nombre -->
       <div class="columna logo-columna">
         <img src="Imagenes/IBERIC (2).png" alt="Logo Iberic Cars" class="footer-logo">
         <h3>Iberic Cars</h3>
       </div>
+  
+      <!-- Columna 2: Nosotros -->
       <div class="columna">
         <h3>Nosotros</h3>
         <p>Somos un concesionario especializado en la venta de coches de todo tipo: deportivos, familiares, eléctricos y más. Trabajamos con marcas reconocidas como Audi, BMW, Toyota y Volkswagen.</p>
       </div>
+  
+      <!-- Columna 3: Contacto -->
       <div class="columna">
         <h3>Contacto</h3>
         <p>📞 Teléfono: +34 600 123 456</p>
@@ -82,10 +69,55 @@
         <p>📘 Facebook: <a href="#">Iberic Cars Oficial</a></p>
       </div>
     </div>
+    <!-- Línea inferior de derechos -->
     <div class="footer-bottom">
       © 2025 Iberic Cars. Todos los derechos reservados.
     </div>
-  </footer>
-  //a ver si va ahora
+  </footer> 
+
+  <!-- PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR"></script>
+<script>
+  // Esperamos un poco para que cargue el carrito y defina totalCarrito
+  function cargarPaypal() {
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        // Si no existe totalCarrito, ponemos 0 para evitar error
+        const total = window.totalCarrito || '0.00';
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: total,
+              currency_code: "EUR"
+            },
+            description: 'Compra en Iberic Cars'
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('Pago completado por ' + details.payer.name.given_name + '!');
+          // Aquí podrías limpiar el carrito o redirigir
+        });
+      },
+      onError: function(err) {
+        console.error('Error en el pago:', err);
+        document.querySelector('.error').textContent = 'Hubo un error con el pago. Inténtalo de nuevo.';
+        document.querySelector('.error').style.display = 'block';
+      }
+    }).render('#paypal-button-container');
+  }
+
+  // Intentamos cargar PayPal varias veces si no existe totalCarrito aún
+  function waitForTotal() {
+    if (window.totalCarrito) {
+      cargarPaypal();
+    } else {
+      setTimeout(waitForTotal, 200);
+    }
+  }
+  waitForTotal();
+</script>
+
 </body>
 </html>

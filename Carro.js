@@ -86,6 +86,10 @@ async function cargarCarro() {
     `;
     lista.appendChild(card);
   });
+  const totalCarrito = coches.reduce((acc, coche) => acc + (parseFloat(coche.precio) || 0), 0);
+
+  // Exponerlo globalmente para el script PayPal
+  window.totalCarrito = totalCarrito.toFixed(2);
 
   // Botón "Ver más"
   lista.querySelectorAll(".btn-detalles").forEach(btn => {

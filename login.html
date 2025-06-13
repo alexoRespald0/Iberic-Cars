@@ -24,11 +24,20 @@
           </div>
         <button type="submit">Entrar</button>
         </form>
+        <p class="olvido">
+          <a href="#" id="olvidaste-password">¿Has olvidado tu contraseña?</a>
+        </p>
         <a class="volver" href="index.html">← Volver al inicio</a>
         <p class="registro">¿No estás registrado? <a href="registro.html">Pulsa aquí</a></p>
         <p id="mensaje"></p>
     </div>
-  
+    <div id="reset-password-container" class="reset-container">
+      <h3>Restablecer contraseña</h3>
+      <input type="email" id="reset-email" placeholder="Introduce tu correo" required>
+      <button id="reset-btn">Enviar enlace</button>
+      <button id="cancelar-btn" type="button">Cancelar</button>
+      <p id="reset-mensaje"></p>
+    </div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js" ></script>
   
   

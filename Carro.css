@@ -314,7 +314,12 @@ nav a {
     max-width: 99vw;
   }
 }
-
+.pago-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+}
 /* ====== FOOTER ====== */
 
 footer {

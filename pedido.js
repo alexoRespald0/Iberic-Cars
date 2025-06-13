@@ -1,9 +1,5 @@
-
-// Utilidad para generar un número de pedido aleatorio y único
-function generarNumeroPedido() {
-  const now = Date.now();
-  return 'PED' + now + '-' + Math.floor(Math.random() * 10000);
-}
+// ... (config supabaseClient igual que en carro.js)
+// ¡NO vuelvas a declarar supabaseClient si ya está declarado!
 
 document.addEventListener('DOMContentLoaded', () => {
   const pedidoForm = document.getElementById('pedido-form');
@@ -15,14 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
     mensaje.textContent = '';
     mensaje.style.color = 'red';
 
-    // Obtener datos del formulario
+    // Validación de campos igual que antes...
     const nombre = document.getElementById('nombre').value.trim();
     const direccion = document.getElementById('direccion').value.trim();
     const cp = document.getElementById('cp').value.trim();
-    const iban = document.getElementById('iban').value.trim();
+    
 
-    // Validación básica
-    if (!nombre || !direccion || !cp || !iban) {
+    if (!nombre || !direccion || !cp  ) {
       mensaje.textContent = 'Por favor rellena todos los campos correctamente.';
       return;
     }
@@ -30,11 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mensaje.textContent = 'El código postal debe tener 5 dígitos.';
       return;
     }
-    if (!/^[A-Z]{2}[0-9]{22}$/.test(iban)) {
-      mensaje.textContent = 'El IBAN debe tener 2 letras y 22 números.';
-      return;
-    }
-
+  
     // Obtener usuario autenticado
     const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
     if (userError || !user) {
@@ -43,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const userId = user.id;
 
-    // Obtener coches en el carrito del usuario
+    // Obtener coches en el carrito
     let Carro;
     try {
       const { data, error } = await supabaseClient
@@ -81,70 +72,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Generar número de pedido
-    const numeroPedido = generarNumeroPedido();
-
-    // Preparar detalles del pedido (puedes guardar en una tabla 'pedidos' si existe)
-    const detallesPedido = {
-      numero_pedido: numeroPedido,
-      id_usuario_uuid: userId,
-      nombre,
-      direccion,
-      cp,
-      iban,
-      fecha: new Date().toISOString(),
-      coches: coches.map(coche => ({
-        id_coche: coche.id_coche,
-        marca: coche.marca,
-        modelo: coche.modelo,
-        año: coche.año,
-        precio: coche.precio
-      }))
-    };
-
-    // Guardar el pedido en la tabla 'pedidos'
+    // Lanzar Checkout de Stripe
     try {
-      const { error: pedidoError } = await supabaseClient
-        .from('pedidos')
-        .insert([detallesPedido]);
-      if (pedidoError) throw pedidoError;
+      mensaje.textContent = "Redirigiendo al pago seguro...";
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          coches, nombre, direccion, cp,  userId
+        })
+      });
+      const result = await response.json();
+      if (result.url) {
+        window.location.href = result.url;
+      } else {
+        mensaje.textContent = 'No se pudo iniciar el pago: ' + (result.error || 'Error desconocido');
+      }
     } catch (err) {
-      mensaje.textContent = `Error al guardar el pedido: ${err.message}`;
-      return;
-    }
-
-    // Eliminar los coches del carrito del usuario
-    try {
-      const { error: deleteError } = await supabaseClient
-        .from('carro')
-        .delete()
-        .eq('id_usuario_uuid', userId);
-      if (deleteError) throw deleteError;
-    } catch (err) {
-      mensaje.textContent = `El pedido se guardó pero no se pudo vaciar el carrito: ${err.message}`;
-      mensaje.style.color = 'orange';
-      return;
-    }
-
-    // Mostrar confirmación con número de pedido y detalles
-    mensaje.style.color = 'green';
-    mensaje.innerHTML = `
-      <strong>¡Pedido realizado con éxito!</strong><br>
-      Número de pedido: <b>${numeroPedido}</b><br>
-      Nombre: ${nombre}<br>
-      Dirección: ${direccion}<br>
-      Código Postal: ${cp}<br>
-      IBAN: ${iban}<br>
-      Coches pedidos:<br>
-      <ul>${coches.map(coche => `<li>${coche.marca} ${coche.modelo} (${coche.año}) - ${coche.precio} €</li>`).join('')}</ul>
-    `;
-
-    // Opcional: limpiar formulario
-    pedidoForm.reset();
-
-    // Opcional: recargar el carro visualmente
-    if (typeof cargarCarro === 'function') {
-      cargarCarro();
+      mensaje.textContent = `Error al iniciar el pago: ${err.message}`;
     }
   });
 });
