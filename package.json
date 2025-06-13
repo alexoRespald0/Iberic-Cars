@@ -1,0 +1,23 @@
+{
+  "name": "iberic-cars",
+  "version": "1.0.0",
+  "main": "Anuncio.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexoRespald0/Iberic-Cars.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexoRespald0/Iberic-Cars/issues"
+  },
+  "homepage": "https://github.com/alexoRespald0/Iberic-Cars#readme",
+  "description": "",
+  "dependencies": {
+    "stripe": "^18.2.1"
+  }
+}
