@@ -128,7 +128,12 @@ function aplicarFiltrosDesdeURL() {
   document.getElementById("año").value = filtros.año;
   document.getElementById("color").value = filtros.color;
   document.getElementById("puertas").value = filtros.puertas;
-  document.getElementById("carroceria").value = filtros.carroceria;
+  const carroceriaSelect = document.getElementById("carroceria");
+	[...carroceriaSelect.options].forEach(opt => {
+  if (opt.value.toLowerCase() === filtros.carroceria.toLowerCase()) {
+    carroceriaSelect.value = opt.value;
+  }
+	});
 
   const precioRange = document.getElementById("precio");
   const etiquetaPrecio = document.querySelector(".precio-valor");
