@@ -192,3 +192,19 @@ body {
   font-size: 0.9rem;
 }
 
+.reset-container #cancelar-btn {
+  background-color: transparent;
+  color: #000;
+  border: 1px solid #ccc;
+  padding: 0.6rem 1rem;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reset-container #cancelar-btn:hover {
+  background-color: #eee;
+}
+
+
