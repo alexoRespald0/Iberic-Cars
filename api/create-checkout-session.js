@@ -1,10 +1,11 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Método no permitido' });
     return;
   }
+
   const { coches, nombre, direccion, cp, iban, userId } = req.body;
 
   if (!coches || coches.length === 0) {
@@ -28,8 +29,8 @@ export default async function handler(req, res) {
       payment_method_types: ['card'],
       line_items,
       mode: 'payment',
-      success_url: `${process.env.BASE_URL}/`,
-      cancel_url: `${process.env.BASE_URL}`,
+      success_url: `${process.env.BASE_URL}/pedido-exito.html?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.BASE_URL}/pedido-cancelado.html`,
       metadata: {
         nombre, direccion, cp, iban, userId,
         coches: JSON.stringify(coches)
@@ -39,4 +40,4 @@ export default async function handler(req, res) {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-}
+};
