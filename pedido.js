@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const nombre = document.getElementById('nombre').value.trim();
     const direccion = document.getElementById('direccion').value.trim();
     const cp = document.getElementById('cp').value.trim();
-   
+    const iban = document.getElementById('iban').value.trim();
 
-    if (!nombre || !direccion || !cp ) {
+    if (!nombre || !direccion || !cp || !iban) {
       mensaje.textContent = 'Por favor rellena todos los campos correctamente.';
       return;
     }
@@ -25,7 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
       mensaje.textContent = 'El código postal debe tener 5 dígitos.';
       return;
     }
-  
+    if (!/^[A-Z]{2}[0-9]{22}$/.test(iban)) {
+      mensaje.textContent = 'El IBAN debe tener 2 letras y 22 números.';
+      return;
+    }
+
     // Obtener usuario autenticado
     const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
     if (userError || !user) {
@@ -79,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          coches, nombre, direccion, cp,  userId
+          coches, nombre, direccion, cp, iban, userId
         })
       });
       const result = await response.json();
