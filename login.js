@@ -82,7 +82,7 @@ resetBtn.addEventListener('click', async () => {
   }
 
   const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-    redirectTo: 'https://iberic-cars.vercel.app/reset-contraseña.html' // 🔁 Cambia esto por tu URL real
+    redirectTo: 'https://iberic-cars.vercel.app/reset_contraseña.html' // 🔁 Cambia esto por tu URL real
   });
 
   if (error) {
