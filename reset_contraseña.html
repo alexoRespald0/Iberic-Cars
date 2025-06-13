@@ -2,35 +2,65 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Restablecer contraseña</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restablecer Contraseña - Iberic Cars</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="login.css">
+  <link rel="icon" type="image/png" href="Imagenes/IBERIC (2).png">
 </head>
+
 <body>
-  <h2>Establece tu nueva contraseña</h2>
-  <form id="reset-form">
-    <input type="password" id="new-password" placeholder="Nueva contraseña" required>
-    <button type="submit">Actualizar contraseña</button>
-  </form>
-  <p id="reset-msg"></p>
+  <a href="index.html">
+    <img src="Imagenes/IBERIC (2).png" alt="Logo de la empresa" />
+  </a>
+  <div class="login-container">
+    <h2>Restablecer Contraseña</h2>
+    <form id="reset-form">
+      <input type="password" id="new-password" placeholder="Nueva contraseña" required>
+      <input type="password" id="confirm-password" placeholder="Repite la contraseña" required>
+      <button type="submit">Cambiar contraseña</button>
+    </form>
+    <a class="volver" href="login.html">← Volver al login</a>
+    <p id="mensaje"></p>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script type="module">
-    const supabase = supabase.createClient('https://yhcivepnywbvskalfqfd.supabase.co', 'ey...');
+    const supabase = supabase.createClient(
+      'https://yhcivepnywbvskalfqfd.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InloY2l2ZXBueXdidnNrYWxmcWZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcwODA5ODgsImV4cCI6MjA2MjY1Njk4OH0.Nl2_D3j5MHTuGnIaelVrREqLqQSPE-Z8ciVnaJGVa-w'
+    );
 
     const form = document.getElementById('reset-form');
-    const msg = document.getElementById('reset-msg');
+    const mensaje = document.getElementById('mensaje');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const newPassword = document.getElementById('new-password').value;
+      const nueva = document.getElementById('new-password').value;
+      const repetir = document.getElementById('confirm-password').value;
 
-      const { error } = await supabase.auth.updateUser({ password: newPassword });
+      mensaje.textContent = '';
+
+      if (nueva.length < 6) {
+        mensaje.textContent = 'La contraseña debe tener al menos 6 caracteres.';
+        mensaje.style.color = 'orange';
+        return;
+      }
+
+      if (nueva !== repetir) {
+        mensaje.textContent = 'Las contraseñas no coinciden.';
+        mensaje.style.color = 'red';
+        return;
+      }
+
+      const { error } = await supabase.auth.updateUser({ password: nueva });
 
       if (error) {
-        msg.textContent = "❌ Error al cambiar contraseña: " + error.message;
-        msg.style.color = "red";
+        mensaje.textContent = '❌ Error al cambiar contraseña: ' + error.message;
+        mensaje.style.color = 'red';
       } else {
-        msg.textContent = "✅ Contraseña actualizada. Ahora puedes iniciar sesión.";
-        msg.style.color = "green";
+        mensaje.textContent = '✅ Contraseña cambiada correctamente. Puedes iniciar sesión.';
+        mensaje.style.color = 'green';
       }
     });
   </script>
